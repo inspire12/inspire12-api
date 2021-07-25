@@ -1,9 +1,9 @@
 package com.inspire12.practice.api.config.auth;
 
+import com.inspire12.practice.api.config.auth.dto.SessionUser;
 import com.inspire12.practice.api.domain.user.User;
 import com.inspire12.practice.api.domain.user.UserRepository;
 import com.inspire12.practice.api.web.dto.OAuthAttributes;
-import com.inspire12.practice.api.web.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
