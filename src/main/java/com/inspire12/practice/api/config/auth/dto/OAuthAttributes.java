@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web.dto;
+package com.inspire12.practice.api.config.auth.dto;
 
 import com.inspire12.practice.api.domain.user.Role;
 import com.inspire12.practice.api.domain.user.User;
