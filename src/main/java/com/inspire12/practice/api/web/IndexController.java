@@ -1,5 +1,6 @@
 package com.inspire12.practice.api.web;
 
+import com.inspire12.practice.api.config.auth.LoginUser;
 import com.inspire12.practice.api.service.posts.PostsService;
 import com.inspire12.practice.api.web.dto.PostsListResponseDto;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
@@ -21,10 +22,9 @@ public class IndexController {
     private final HttpSession httpSession;
     // view resolver
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         List<PostsListResponseDto> post = postsService.findAllDesc();
         model.addAttribute("posts", post);
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }

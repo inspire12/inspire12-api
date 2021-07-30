@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 @Component
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {
+    // 조건에 맞는 메소드가 있다면 HandlerMethodArgument Resolver의 구현체가 지정한 겂으로 해당 메소드의 파라미터를 넘길 수 있다
 
     private final HttpSession httpSession;
 
