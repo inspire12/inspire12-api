@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### profile
-aplication-oauth2.yml
+aplication-oauth.yml
