@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.inspire12.practice</groupId>
-    <artifactId>api</artifactId>
+    <artifactId>inspire12-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>api</name>
     <description>test driven and spring option test</description>
