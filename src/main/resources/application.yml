@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: oauth
+    include: oauth,real-db
   h2:
     console:
       enabled: true
@@ -17,3 +17,4 @@ spring:
 
   session:
     store-type: jdbc
+    jdbc.initialize-schema: always

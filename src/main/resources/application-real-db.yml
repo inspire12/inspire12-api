@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    hibernate.ddl-auto: none
+#    show-sql: false
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      jdbc-url: jdbc:mysql://inspire12-db.cs8f7g6gtsp2.ap-northeast-2.rds.amazonaws.com:3306/inspire12_db
+      username: inspire12
+      password: abcde12#
