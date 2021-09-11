@@ -20,9 +20,8 @@ spring:
     store-type: jdbc
     jdbc.initialize-schema: always
 
-  autoconfigure:
-    exclude=org:
-      springframework:
-        boot:
-          autoconfigure:
-            security: SecurityConfig
+  sleuth:
+    trace-id128: true
+
+  zipkin:
+    enabled: false
