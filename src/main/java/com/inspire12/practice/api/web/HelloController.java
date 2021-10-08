@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.config.logging.TimeChecker;
+import com.inspire12.practice.api.lib.measure.TimeChecker;
 import com.inspire12.practice.api.web.dto.HelloResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

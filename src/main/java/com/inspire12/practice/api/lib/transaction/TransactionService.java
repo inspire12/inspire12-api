@@ -7,5 +7,11 @@ public interface TransactionService {
 
     <T> T doInNewTransaction(Callable<T> callable);
 
+    <T> T doInNewTransactionWithRetryingForUpdate(Callable<T> callable);
+
     <T> T doInNewTransactionWithRetryingForUpdate(Callable<T> callable, long backoffMilliseconds, int retryingCount);
+
+    <T> T doInNewTransactionWithRetryingForInsert(Callable<T> callable);
+
+    <T> T doInNewTransactionWithRetryingForInsert(Callable<T> callable, long backoffMilliseconds, int retryingCount);
 }
