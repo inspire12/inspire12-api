@@ -9,3 +9,5 @@ spring:
   zipkin:
     enabled: false
 
+  cache:
+    cache-names: hello

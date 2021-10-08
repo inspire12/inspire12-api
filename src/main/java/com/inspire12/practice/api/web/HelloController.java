@@ -10,27 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 
 @RestController
 public class HelloController {
 
     @GetMapping("/hello")
     @TimeChecker
-    @Cacheable("hello")
-    public String hello() throws InterruptedException {
-        Thread.sleep(10000);
+    public String hello() {
         return "hello";
     }
 
-    @Autowired
-    CacheManager cacheManager;
-
-    @GetMapping("/hello/cache")
-    @TimeChecker
-    public String hello2() {
-        Cache cache = cacheManager.getCache("hello");
-        return "hello";
-    }
 
     @GetMapping("/api/v1/hello/dto")
     @TimeChecker
