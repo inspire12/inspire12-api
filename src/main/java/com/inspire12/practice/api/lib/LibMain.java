@@ -1,5 +1,6 @@
-package com.inspire12.practice.api.lib.rank;
+package com.inspire12.practice.api.lib;
 
+import com.inspire12.practice.api.lib.rank.RankRunner;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
