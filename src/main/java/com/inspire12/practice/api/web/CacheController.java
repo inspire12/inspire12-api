@@ -27,6 +27,9 @@ public class CacheController {
     @TimeChecker
     public String hello2() {
         Cache cache = cacheManager.getCache("hello");
-        return "hello";
+        if (cache != null) {
+            return cache.getName();
+        }
+        return "failed";
     }
 }
