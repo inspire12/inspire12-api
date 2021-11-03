@@ -11,3 +11,12 @@ spring:
 
   cache:
     cache-names: hello
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "info"
+          - "health"
+          - "httptrace"
