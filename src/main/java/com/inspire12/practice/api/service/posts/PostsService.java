@@ -6,7 +6,9 @@ import com.inspire12.practice.api.web.dto.PostsListResponseDto;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;
 import com.inspire12.practice.api.web.dto.PostsUpdateRequestDto;
+
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,9 +41,10 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
+    public List<PostsListResponseDto> findAllDesc(Pageable pageRequest) {
+        return postsRepository.findAllDesc(pageRequest).stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
 }

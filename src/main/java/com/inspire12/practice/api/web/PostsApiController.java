@@ -1,10 +1,15 @@
 package com.inspire12.practice.api.web;
 
 import com.inspire12.practice.api.service.posts.PostsService;
+import com.inspire12.practice.api.web.dto.PostsListResponseDto;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;
 import com.inspire12.practice.api.web.dto.PostsUpdateRequestDto;
+
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,4 +37,10 @@ public class PostsApiController {
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
     }
+
+    @GetMapping("/api/v1/posts")
+    public List<PostsListResponseDto> findAll(@PageableDefault Pageable pageRequest) {
+        return postsService.findAllDesc(pageRequest);
+    }
+
 }

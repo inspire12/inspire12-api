@@ -6,6 +6,7 @@ import com.inspire12.practice.api.web.dto.PostsListResponseDto;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class IndexController {
     // view resolver
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
-        model.addAttribute("posts",  postsService.findAllDesc());
+        model.addAttribute("posts",  postsService.findAllDesc(Pageable.unpaged()));
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
