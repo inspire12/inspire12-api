@@ -19,7 +19,6 @@ import lombok.ToString.Exclude;
 @Getter // No Setter
 @NoArgsConstructor
 @Entity
-@ToString(exclude = "contents")
 public class Posts extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
