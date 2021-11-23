@@ -3,6 +3,7 @@ package com.inspire12.practice.api.config.datasource;
 import com.zaxxer.hikari.HikariDataSource;
 import java.util.HashMap;
 import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -19,9 +20,10 @@ import org.springframework.transaction.PlatformTransactionManager;
     entityManagerFactoryRef = "communityEntityManagerFactory",
     transactionManagerRef = "communityTransactionManager"
 )
-public class CommunityDataSource {
-    @Bean("communityDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.paige-community")
+public class CommunityPostDataSource {
+
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.community")
     public DataSource communityDataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
@@ -31,7 +33,7 @@ public class CommunityDataSource {
     public LocalContainerEntityManagerFactoryBean communityEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(communityDataSource());
-        entityManager.setPackagesToScan(new String[]{"com.inspire12.practice.api.domain.post"});
+        entityManager.setPackagesToScan(new String[]{"com.inspire12.practice.api.domain.posts"});
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         entityManager.setJpaPropertyMap(new HashMap<String, String>() {{
@@ -42,7 +44,7 @@ public class CommunityDataSource {
         return entityManager;
     }
 
-    @Bean("communityTransactionManager")
+    @Bean
     PlatformTransactionManager communityTransactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(communityEntityManagerFactory().getObject());

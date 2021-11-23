@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.service.posts.PostsService;
+import com.inspire12.practice.api.domain.posts.PostsService;
 import com.inspire12.practice.api.web.dto.PostsListResponseDto;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;

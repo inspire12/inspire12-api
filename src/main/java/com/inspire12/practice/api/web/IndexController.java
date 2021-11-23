@@ -1,8 +1,7 @@
 package com.inspire12.practice.api.web;
 
 import com.inspire12.practice.api.config.auth.LoginUser;
-import com.inspire12.practice.api.service.posts.PostsService;
-import com.inspire12.practice.api.web.dto.PostsListResponseDto;
+import com.inspire12.practice.api.domain.posts.PostsService;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller

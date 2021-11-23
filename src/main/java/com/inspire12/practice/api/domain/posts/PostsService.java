@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.service.posts;
+package com.inspire12.practice.api.domain.posts;
 
 import com.inspire12.practice.api.domain.posts.Posts;
 import com.inspire12.practice.api.domain.posts.PostsRepository;
