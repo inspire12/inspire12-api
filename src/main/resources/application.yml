@@ -1,22 +1,27 @@
+
 spring:
-  session:
+    session:
     store-type: jdbc
     jdbc.initialize-schema: always
+    main:
+        allow-bean-definition-overriding: true
 
-  sleuth:
+sleuth:
     trace-id128: true
 
-  zipkin:
+zipkin:
     enabled: false
 
-  cache:
+cache:
     cache-names: hello
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include:
-          - "info"
-          - "health"
-          - "httptrace"
+    endpoints:
+        web:
+            exposure:
+                include:
+                    - "info"
+                    - "health"
+                    - "httptrace"
+server:
+    port: 8080

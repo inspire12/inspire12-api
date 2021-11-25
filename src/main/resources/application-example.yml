@@ -1,0 +1,41 @@
+primary:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url:
+        username:
+        password:
+        hikari:
+            connection-test-query: SELECT 1 FROM DUAL
+        jdbc.initialize-schema: always
+
+community:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url:
+        username:
+        password:
+        hikari:
+            connection-test-query: SELECT 1 FROM DUAL
+        jdbc.initialize-schema: always
+
+spring:
+    jpa:
+        show-sql: true
+        open-in-view: false
+        hibernate:
+            ddl-auto: create
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL57Dialect
+                storage_engine: innodb
+
+    session:
+        store-type: jdbc
+        jdbc.initialize-schema: always
+
+    batch:
+        job:
+            enabled: false
+logging:
+    level:
+        root: info

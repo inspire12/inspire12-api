@@ -4,8 +4,10 @@ import com.inspire12.practice.api.domain.posts.Posts;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class PostsResponseDto {
     private Long id;
     private String title;
