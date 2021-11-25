@@ -3,39 +3,40 @@ package com.inspire12.practice.api.config.datasource;
 import com.zaxxer.hikari.HikariDataSource;
 import java.util.HashMap;
 import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 
 @Configuration
 //@EnableTransactionManagement
 @EnableJpaRepositories(
-    basePackages = "com.inspire12.practice.api.domain.posts",
-    entityManagerFactoryRef = "communityEntityManagerFactory",
-    transactionManagerRef = "communityTransactionManager"
+    basePackages = "com.inspire12.practice.api.domain.user",
+    entityManagerFactoryRef = "entityManagerFactory",
+    transactionManagerRef = "transactionManager"
 )
-public class CommunityPostDataSource {
+public class ApiDataSource {
 
     @Bean
-    @ConfigurationProperties(prefix = "community.datasource")
-    public DataSource communityDataSource() {
+    @ConfigurationProperties(prefix = "primary.datasource")
+    public DataSource dataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean communityEntityManagerFactory() {
+    @Primary
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
-        entityManager.setDataSource(communityDataSource());
-        entityManager.setPackagesToScan(new String[]{"com.inspire12.practice.api.domain.posts"});
+        entityManager.setDataSource(dataSource());
+        entityManager.setPackagesToScan(new String[]{"com.inspire12.practice.api.domain"});
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         entityManager.setJpaPropertyMap(new HashMap<String, String>() {{
@@ -47,9 +48,10 @@ public class CommunityPostDataSource {
     }
 
     @Bean
-    PlatformTransactionManager communityTransactionManager() {
+    @Primary
+    PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(communityEntityManagerFactory().getObject());
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
 }
