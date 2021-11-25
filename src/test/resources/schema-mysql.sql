@@ -19,3 +19,5 @@ create table inspire12_community.Posts
     createdDate  datetime     null,
     modifiedDate datetime     null
 );
+INSERT INTO inspire12_community.Posts (id, title, content, author, createdDate, modifiedDate) VALUES (1, '안녕', '디지몬', '서영학', '2021-11-25 11:08:00', '2021-11-25 11:08:04');
+

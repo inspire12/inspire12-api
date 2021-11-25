@@ -20,9 +20,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableJpaRepositories(
     basePackages = "com.inspire12.practice.api.domain.user",
     entityManagerFactoryRef = "entityManagerFactory",
-    transactionManagerRef = "transactionManager"
+    transactionManagerRef = ApiDataSource.TX_MANAGER
 )
 public class ApiDataSource {
+    public final static String TX_MANAGER ="transactionManager";
 
     @Bean
     @ConfigurationProperties(prefix = "primary.datasource")

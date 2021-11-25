@@ -20,9 +20,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(
     basePackages = "com.inspire12.practice.api.domain.posts",
     entityManagerFactoryRef = "communityEntityManagerFactory",
-    transactionManagerRef = "communityTransactionManager"
+    transactionManagerRef = CommunityPostDataSource.TX_MANAGER
 )
 public class CommunityPostDataSource {
+    public final static String TX_MANAGER ="communityTransactionManager";
 
     @Bean
     @ConfigurationProperties(prefix = "community.datasource")

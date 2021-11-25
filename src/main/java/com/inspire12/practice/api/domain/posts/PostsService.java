@@ -1,5 +1,6 @@
 package com.inspire12.practice.api.domain.posts;
 
+import com.inspire12.practice.api.config.datasource.CommunityPostDataSource;
 import com.inspire12.practice.api.domain.posts.Posts;
 import com.inspire12.practice.api.domain.posts.PostsRepository;
 import com.inspire12.practice.api.web.dto.PostsListResponseDto;
@@ -20,12 +21,12 @@ import java.util.stream.Collectors;
 public class PostsService {
     private final PostsRepository postsRepository;
 
-    @Transactional
+    @Transactional(transactionManager = CommunityPostDataSource.TX_MANAGER)
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
-    @Transactional
+    @Transactional(transactionManager = CommunityPostDataSource.TX_MANAGER)
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
@@ -33,14 +34,14 @@ public class PostsService {
         return id;
     }
 
-    @Transactional(readOnly = true, transactionManager = "communityTransactionManager")
+    @Transactional(readOnly = true, transactionManager = CommunityPostDataSource.TX_MANAGER)
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
         return new PostsResponseDto(entity);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, transactionManager = CommunityPostDataSource.TX_MANAGER)
     public List<PostsListResponseDto> findAllDesc(Pageable pageRequest) {
         return postsRepository.findAllDesc(pageRequest).stream()
                 .map(PostsListResponseDto::new)

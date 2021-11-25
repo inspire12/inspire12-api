@@ -6,6 +6,7 @@ primary:
         password:
         hikari:
             connection-test-query: SELECT 1 FROM DUAL
+        jdbc.initialize-schema: always
 
 community:
     datasource:
@@ -15,9 +16,9 @@ community:
         password:
         hikari:
             connection-test-query: SELECT 1 FROM DUAL
+        jdbc.initialize-schema: always
 
 spring:
-
     jpa:
         show-sql: true
         open-in-view: false
