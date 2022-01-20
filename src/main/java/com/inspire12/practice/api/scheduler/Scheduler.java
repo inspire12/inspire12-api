@@ -1,5 +1,6 @@
 package com.inspire12.practice.api.scheduler;
 
+import javax.annotation.PostConstruct;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.support.CronExpression;
 import org.springframework.scheduling.support.CronTrigger;
@@ -16,6 +17,11 @@ import java.util.concurrent.TimeUnit;
 public class Scheduler {
     private ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
     Map<String, ScheduledFuture<?>> scheduledFutureMap = new ConcurrentHashMap<>();
+
+    @PostConstruct
+    public void init() {
+        scheduler.initialize();
+    }
 
     public void stopScheduler() {
         for (Map.Entry<String, ScheduledFuture<?>> a :scheduledFutureMap.entrySet()) {

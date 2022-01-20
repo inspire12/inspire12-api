@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+  <property name="LOG_FILE" value="./logs/catalina.out"/>
+  <property name="MAX_HISTORY" value="30"/>
+  <property name="MAX_FILESIZE" value="3000MB"/>
+
+  <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+  <property name="CONSOLE_LOG_PATTERN"
+    value="${CUSTOM_CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%30.30t]){faint} %clr([%40.40logger{39}:%4L]){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+  <property name="CONSOLE_NL_LOG_PATTERN"
+    value="${CUSTOM_CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%30.30t]){faint} %clr([%40.40logger{39}:%4L]){cyan} %clr(:){faint} %replace(%m){'[\n\r]+',' '}%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+  <property name="FILE_LOG_PATTERN"
+    value="${CUSTOM_FILE_LOG_PATTERN:-%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%30.30t] %-40.40logger{39} : %replace(%m){'[\n\r]+',' '}%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+  <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+  <springProfile name="local">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+        <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      </encoder>
+    </appender>
+    <logger name="com.inspire12.practice.api" level="DEBUG"/>
+    <root level="INFO">
+      <appender-ref ref="CONSOLE"/>
+    </root>
+  </springProfile>
+
+  <springProfile name="!local">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+        <pattern>${CONSOLE_NL_LOG_PATTERN}</pattern>
+      </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <encoder>
+        <pattern>${FILE_LOG_PATTERN}</pattern>
+      </encoder>
+      <file>${LOG_FILE}</file>
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_FILE}-%d{yyyy.MM.dd}-%i.gz</fileNamePattern>
+        <maxHistory>${MAX_HISTORY}</maxHistory>
+        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+          <maxFileSize>${MAX_FILESIZE}</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+      </rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+      <appender-ref ref="FILE"/>
+
+      <!-- not allowing console log at live -->
+      <!--<if condition='!property("spring.profiles.active").contains("live") || property("LOG_LEVEL").equalsIgnoreCase("DEBUG")'>-->
+      <!--<then>-->
+      <appender-ref ref="CONSOLE"/>
+      <!--</then>-->
+      <!--</if>-->
+    </root>
+  </springProfile>
+</configuration>

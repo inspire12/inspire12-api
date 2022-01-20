@@ -6,6 +6,9 @@ spring:
     main:
         allow-bean-definition-overriding: true
 
+logging:
+    level:
+        com.inspire12.practice.api: info
 sleuth:
     trace-id128: true
 
