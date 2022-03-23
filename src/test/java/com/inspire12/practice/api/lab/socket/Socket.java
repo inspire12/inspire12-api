@@ -27,7 +27,7 @@ public class Socket {
         onlineCount++;
         this.session = session;
         listeners.add(this);
-        log.info("onOPen called, userCount: " + onlineCount);
+        log.info("onOpen called, userCount: {}", onlineCount);
     }
 
     @OnClose

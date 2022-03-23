@@ -36,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService {
             runnable.run();
             transactionManager.commit(txStatus);
         } catch (Exception e) {
-            log.info("Error in do new transaction " + name , e);
+            log.error("Error in do new transaction {}", name, e);
             transactionManager.rollback(txStatus);
         }
     }
@@ -51,7 +51,7 @@ public class TransactionServiceImpl implements TransactionService {
         try {
             result = callable.call();
         } catch (Exception e) {
-            log.info("Error in do new transaction " + name, e);
+            log.error("Error in do new transaction {}", name, e);
             transactionManager.rollback(txStatus);
         }
         transactionManager.commit(txStatus);
@@ -78,19 +78,19 @@ public class TransactionServiceImpl implements TransactionService {
                 return result;
             } catch (ObjectOptimisticLockingFailureException | StaleObjectStateException | CannotAcquireLockException le) {
                 tryingCount++;
-                log.debug("Retrying Update: {} {}" ,tryingCount, le.getMessage());
+                log.debug("Retrying Update: {} {}", tryingCount, le.getMessage());
                 try {
                     transactionManager.rollback(txStatus);
                 } catch (IllegalTransactionStateException itse) {
-                    log.debug("ITransactionSE occurred " + name);
+                    log.debug("ITransactionSE occurred {}", name);
                 }
                 try {
                     TimeUnit.MICROSECONDS.sleep(backoffMilliseconds);
                 } catch (InterruptedException e) {
-                    log.debug("Transaction sleep error " + name, e);
+                    log.debug("Transaction sleep error {}", name, e);
                 }
             } catch (Exception e) {
-                log.error("Error in retrying update " + name, e);
+                log.error("Error in retrying update {}", name, e);
                 transactionManager.rollback(txStatus);
                 break;
             }
@@ -118,7 +118,7 @@ public class TransactionServiceImpl implements TransactionService {
                 return result;
             } catch (DataIntegrityViolationException le) {
                 tryingCount++;
-                log.debug("Retrying Update: {} {}" ,tryingCount, le.getMessage());
+                log.debug("Retrying Update: {} {}", tryingCount, le.getMessage());
                 try {
                     transactionManager.rollback(txStatus);
                 } catch (IllegalTransactionStateException itse) {

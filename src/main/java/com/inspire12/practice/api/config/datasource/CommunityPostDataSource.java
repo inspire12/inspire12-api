@@ -16,7 +16,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-//@EnableTransactionManagement
 @EnableJpaRepositories(
     basePackages = "com.inspire12.practice.api.domain.posts",
     entityManagerFactoryRef = "communityEntityManagerFactory",
@@ -26,7 +25,7 @@ public class CommunityPostDataSource {
     public final static String TX_MANAGER ="communityTransactionManager";
 
     @Bean
-    @ConfigurationProperties(prefix = "community.datasource")
+    @ConfigurationProperties(prefix = "datasource.community")
     public DataSource communityDataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
@@ -40,8 +39,8 @@ public class CommunityPostDataSource {
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         entityManager.setJpaPropertyMap(new HashMap<String, String>() {{
-            put("hibernate.hbm2ddl.auto", "none");
-            put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+            put("hibernate.hbm2ddl.auto", "create");
+            put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
             put("hibernate.id.new_generator_mappings", "false");
         }});
         return entityManager;

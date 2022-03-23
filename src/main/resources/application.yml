@@ -1,30 +1,29 @@
-
 spring:
-    session:
+  session:
     store-type: jdbc
     jdbc.initialize-schema: always
-    main:
-        allow-bean-definition-overriding: true
+  sleuth:
+    trace-id128: true
+  zipkin:
+    enabled: false
+  cache:
+    cache-names: hello
+  main:
+      allow-bean-definition-overriding: true
 
 logging:
-    level:
-        com.inspire12.practice.api: info
-sleuth:
-    trace-id128: true
+  level:
+    com.inspire12.practice.api: info
+    root: info
 
-zipkin:
-    enabled: false
-
-cache:
-    cache-names: hello
 
 management:
-    endpoints:
-        web:
-            exposure:
-                include:
-                    - "info"
-                    - "health"
-                    - "httptrace"
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "info"
+          - "health"
+          - "httptrace"
 server:
-    port: 8080
+  port: 8080

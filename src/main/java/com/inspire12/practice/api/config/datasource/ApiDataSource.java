@@ -1,8 +1,14 @@
 package com.inspire12.practice.api.config.datasource;
 
+import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.util.HashMap;
 import javax.sql.DataSource;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +19,13 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
+//https://www.baeldung.com/spring-data-jpa-multiple-databases
 
 @Configuration
-//@EnableTransactionManagement
+@EnableTransactionManagement
 @EnableJpaRepositories(
     basePackages = "com.inspire12.practice.api.domain.user",
     entityManagerFactoryRef = "entityManagerFactory",
@@ -26,23 +35,24 @@ public class ApiDataSource {
     public final static String TX_MANAGER ="transactionManager";
 
     @Bean
-    @ConfigurationProperties(prefix = "primary.datasource")
+    @Primary
+    @ConfigurationProperties(prefix = "datasource.primary")
     public DataSource dataSource() {
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+        return DataSourceBuilder.create().build();
     }
-
 
     @Bean
     @Primary
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
-        entityManager.setDataSource(dataSource());
+        DataSource dataSource = dataSource();
+        entityManager.setDataSource(dataSource);
         entityManager.setPackagesToScan(new String[]{"com.inspire12.practice.api.domain"});
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-
         entityManager.setJpaPropertyMap(new HashMap<String, String>() {{
-            put("hibernate.hbm2ddl.auto", "none");
-            put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+            put("hibernate.hbm2ddl.auto", "create");
+            put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
             put("hibernate.id.new_generator_mappings", "false");
         }});
         return entityManager;
