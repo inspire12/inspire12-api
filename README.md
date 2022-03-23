@@ -9,3 +9,5 @@
 - [X] oauth third party login
 - [X] Transaction service
 - [X] web socket & chat
+- [X] infra
+- [X] local h2 setting 
