@@ -10,7 +10,8 @@ spring:
     cache-names: hello
   main:
       allow-bean-definition-overriding: true
-
+  profiles:
+    include: oauth, real-db
 logging:
   level:
     com.inspire12.practice.api: info
