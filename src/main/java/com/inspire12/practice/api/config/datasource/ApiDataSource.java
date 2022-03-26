@@ -76,8 +76,8 @@ public class ApiDataSource {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
-        DataSource dataSource = dataSource();
-        entityManager.setDataSource(dataSource);
+
+        entityManager.setDataSource(dataSource());
         entityManager.setPackagesToScan(new String[]{"com.inspire12.practice.api.domain"});
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManager.setJpaPropertyMap(new HashMap<String, String>() {{
@@ -106,7 +106,6 @@ public class ApiDataSource {
     public LocalContainerEntityManagerFactoryBean slaveEntityManagerFactory() {
 
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
-        DataSource dataSource = dataSource();
         entityManager.setDataSource(slaveDataSource());
         entityManager.setPackagesToScan(new String[]{"com.inspire12.practice.api.domain"});
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
