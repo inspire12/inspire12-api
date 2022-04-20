@@ -26,7 +26,7 @@ public class PostsService {
         return postsRepository.save(requestDto.toEntity()).getId();
     }
 
-    @Transactional(transactionManager = CommunityPostDataSource.TX_MANAGER)
+    @Transactional(readOnly = true, transactionManager = CommunityPostDataSource.TX_MANAGER)
     public Long update(Long id, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
