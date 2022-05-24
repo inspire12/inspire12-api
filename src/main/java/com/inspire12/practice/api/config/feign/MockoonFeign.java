@@ -3,6 +3,7 @@ package com.inspire12.practice.api.config.feign;
 import com.inspire12.practice.api.web.dto.Product;
 import com.inspire12.practice.api.web.dto.CouponIssueInfo;
 import com.inspire12.practice.api.web.dto.CouponIssueStatusInfo;
+import com.inspire12.practice.api.web.dto.ProductListResponse;
 import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface MockoonFeign {
 //    https://dummyjson.com/products/search?q=Laptop
     @GetMapping("/products/search")
-    List<Product> infos(@RequestParam("q") String query);
+    ProductListResponse infos(@RequestParam("q") String query);
 
     @GetMapping("/coupon/v1/issue/status/{memberNo}")
     CouponIssueStatusInfo issueStatusInfo(@PathVariable(value = "memberNo") String memberNo,

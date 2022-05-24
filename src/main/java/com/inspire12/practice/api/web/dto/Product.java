@@ -1,8 +1,15 @@
 package com.inspire12.practice.api.web.dto;
 
+import java.io.Serializable;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-public abstract class Product {
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Product implements Serializable {
 
     public List<String> images;
     public String thumbnail;

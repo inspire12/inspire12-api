@@ -16,7 +16,7 @@ public class HelloController {
 
     private final MockoonService mockoonService;
 
-    @GetMapping("/hello")
+    @GetMapping("/api/v1/hello")
     @TimeChecker
     public List<Product> hello(@RequestParam("q") String query) {
         return mockoonService.getProducts(query);

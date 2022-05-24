@@ -13,7 +13,6 @@ public class MockoonServiceImpl implements MockoonService {
 
     @Override
     public List<Product> getProducts(String couponNumbers) {
-
-        return mockoonFeign.infos(couponNumbers);
+        return mockoonFeign.infos(couponNumbers).getProducts();
     }
 }
