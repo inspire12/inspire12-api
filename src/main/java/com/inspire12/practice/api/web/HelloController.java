@@ -1,25 +1,25 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.config.datasource.ApiDataSource;
-import com.inspire12.practice.api.config.datasource.CommunityPostDataSource;
 import com.inspire12.practice.api.lib.measure.TimeChecker;
 import com.inspire12.practice.api.web.dto.HelloResponseDto;
-import net.bytebuddy.asm.Advice;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.inspire12.practice.api.web.dto.Product;
+import com.inspire12.practice.api.web.service.MockoonService;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.sql.DataSource;
-
-
+@RequiredArgsConstructor
 @RestController
 public class HelloController {
 
+    private final MockoonService mockoonService;
+
     @GetMapping("/hello")
     @TimeChecker
-    public String hello() {
-        return "hello";
+    public List<Product> hello(@RequestParam("q") String query) {
+        return mockoonService.getProducts(query);
     }
 
     @GetMapping("/api/v1/hello/dto")

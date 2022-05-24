@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.domain.posts.PostsService;
+import com.inspire12.practice.api.domain.posts.PostsDomainService;
 import com.inspire12.practice.api.web.dto.PostsListResponseDto;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {
-    private final PostsService postsService;
+    private final PostsDomainService postsService;
 
     @PostMapping("/api/v1/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto) {
