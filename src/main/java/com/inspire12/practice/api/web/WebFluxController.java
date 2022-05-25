@@ -1,14 +1,8 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.domain.posts.Posts;
-import com.inspire12.practice.api.domain.posts.PostsRepository;
-import com.inspire12.practice.api.domain.posts.PostsService;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

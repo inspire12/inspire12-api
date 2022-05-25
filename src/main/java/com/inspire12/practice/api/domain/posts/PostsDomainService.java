@@ -1,8 +1,6 @@
 package com.inspire12.practice.api.domain.posts;
 
 import com.inspire12.practice.api.config.datasource.CommunityPostDataSource;
-import com.inspire12.practice.api.domain.posts.Posts;
-import com.inspire12.practice.api.domain.posts.PostsRepository;
 import com.inspire12.practice.api.web.dto.PostsListResponseDto;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class PostsService {
+public class PostsDomainService {
     private final PostsRepository postsRepository;
 
     @Transactional(transactionManager = CommunityPostDataSource.TX_MANAGER)

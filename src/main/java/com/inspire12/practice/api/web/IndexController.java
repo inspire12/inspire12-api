@@ -1,7 +1,7 @@
 package com.inspire12.practice.api.web;
 
 import com.inspire12.practice.api.config.auth.LoginUser;
-import com.inspire12.practice.api.domain.posts.PostsService;
+import com.inspire12.practice.api.domain.posts.PostsDomainService;
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import com.inspire12.practice.api.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class IndexController {
 
-    private final PostsService postsService;
+    private final PostsDomainService postsService;
 
     // view resolver
     @GetMapping("/")
