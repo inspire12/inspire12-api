@@ -11,8 +11,10 @@ import com.inspire12.practice.api.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +45,7 @@ public class PostsService {
 
     @Transactional(readOnly = true, transactionManager = CommunityPostDataSource.TX_MANAGER)
     public List<PostsListResponseDto> findAllDesc(Pageable pageRequest) {
+
         return postsRepository.findAllDesc(pageRequest).stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
