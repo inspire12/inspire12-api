@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web;
+package com.inspire12.practice.api.web.controller;
 
 import com.inspire12.practice.api.config.auth.LoginUser;
 import com.inspire12.practice.api.domain.posts.PostsDomainService;
@@ -27,15 +27,15 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/index")
+    @GetMapping("/chat")
     public String index2(Model model) {
 
-        return "test";
+        return "practice/chat/test";
     }
 
     @GetMapping("/posts/save")
     public String postsSave() {
-        return "posts-save";
+        return "post/posts-save";
     }
 
     @GetMapping("/posts/update/{id}")
@@ -43,6 +43,6 @@ public class IndexController {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
 
-        return "posts-update";
+        return "post/posts-update";
     }
 }

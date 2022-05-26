@@ -14,13 +14,13 @@ public class BasicJob {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-//
+
 //    @Bean
 //    public Job basicJob() {
 //        return jobBuilderFactory.get("basicJob")
 //                .preventRestart()
-//                .start(basicStep())
-//                .next()
+//                .start(this.basicStep())
+//                .next((jobExecution, stepExecution) -> )
 //                .end()
 //                .build();
 //    }

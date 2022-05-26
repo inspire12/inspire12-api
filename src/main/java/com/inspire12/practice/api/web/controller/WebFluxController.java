@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web;
+package com.inspire12.practice.api.web.controller;
 
 import com.inspire12.practice.api.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
