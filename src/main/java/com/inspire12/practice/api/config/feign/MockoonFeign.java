@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "mockoon", url = "${api-url}")
+@FeignClient(name = "mockoon", url = "${api-url:dummyjson.com}")
 public interface MockoonFeign {
 //    https://dummyjson.com/products/search?q=Laptop
     @GetMapping("/products/search")
