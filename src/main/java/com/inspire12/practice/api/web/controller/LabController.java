@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/oauth")
+@RequestMapping("/lab")
 @RestController
-public class OAuthController {
+public class LabController {
 
 }
