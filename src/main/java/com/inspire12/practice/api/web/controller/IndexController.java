@@ -1,9 +1,9 @@
 package com.inspire12.practice.api.web.controller;
 
-import com.inspire12.practice.api.config.auth.LoginUser;
+import com.inspire12.practice.api.config.security.aop.LoginUser;
 import com.inspire12.practice.api.domain.posts.PostsDomainService;
 import com.inspire12.practice.api.domain.posts.PostsResponseDto;
-import com.inspire12.practice.api.config.auth.dto.SessionUser;
+import com.inspire12.practice.api.domain.user.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;

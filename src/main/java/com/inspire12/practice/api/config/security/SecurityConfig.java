@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.config.auth;
+package com.inspire12.practice.api.config.security;
 
 import com.inspire12.practice.api.domain.user.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;

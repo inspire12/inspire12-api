@@ -3,6 +3,7 @@ package com.inspire12.practice.api.domain.posts;
 import com.inspire12.practice.api.config.datasource.CommunityPostDataSource;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

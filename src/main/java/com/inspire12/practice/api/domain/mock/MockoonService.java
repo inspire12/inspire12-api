@@ -6,4 +6,6 @@ import java.util.List;
 public interface MockoonService {
 
     List<Product> getProducts(String couponNumbers);
+
+    List<Product> getHello(String couponNumbers);
 }

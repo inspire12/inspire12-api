@@ -1,7 +1,5 @@
-package com.inspire12.practice.api.config.auth.dto;
+package com.inspire12.practice.api.domain.user;
 
-import com.inspire12.practice.api.domain.user.Role;
-import com.inspire12.practice.api.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 

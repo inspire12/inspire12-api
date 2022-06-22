@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.config;
 
-import com.inspire12.practice.api.config.auth.LoginUserArgumentResolver;
+import com.inspire12.practice.api.config.security.LoginUserArgumentResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebArgumentConfig implements WebMvcConfigurer {
     private final LoginUserArgumentResolver loginUserArgumentResolver;
 
     @Override

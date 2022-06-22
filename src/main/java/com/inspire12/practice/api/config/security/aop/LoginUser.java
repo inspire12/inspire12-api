@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.config.auth;
+package com.inspire12.practice.api.config.security.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
