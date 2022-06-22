@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web.dto;
+package com.inspire12.practice.api.domain.product;
 
 import java.util.List;
 import lombok.AllArgsConstructor;

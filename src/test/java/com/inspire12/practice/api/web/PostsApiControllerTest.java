@@ -1,38 +1,25 @@
 package com.inspire12.practice.api.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.inspire12.practice.api.config.TestObjectMapperConfig;
 import com.inspire12.practice.api.domain.posts.Posts;
 import com.inspire12.practice.api.domain.posts.PostsRepository;
-import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;
-import com.inspire12.practice.api.web.dto.PostsUpdateRequestDto;
+import com.inspire12.practice.api.domain.posts.PostsSaveRequestDto;
+import com.inspire12.practice.api.domain.posts.PostsUpdateRequestDto;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.annotation.Import;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.List;
 

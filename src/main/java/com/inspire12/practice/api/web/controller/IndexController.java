@@ -2,7 +2,7 @@ package com.inspire12.practice.api.web.controller;
 
 import com.inspire12.practice.api.config.auth.LoginUser;
 import com.inspire12.practice.api.domain.posts.PostsDomainService;
-import com.inspire12.practice.api.web.dto.PostsResponseDto;
+import com.inspire12.practice.api.domain.posts.PostsResponseDto;
 import com.inspire12.practice.api.config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +35,7 @@ public class IndexController {
 
     @GetMapping("/posts/save")
     public String postsSave() {
-        return "post/posts-save";
+        return "practice/post/posts-save";
     }
 
     @GetMapping("/posts/update/{id}")
@@ -43,6 +43,6 @@ public class IndexController {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
 
-        return "post/posts-update";
+        return "practice/post/posts-update";
     }
 }

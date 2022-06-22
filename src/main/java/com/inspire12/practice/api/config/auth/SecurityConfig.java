@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.config.auth;
 
-import com.inspire12.practice.api.domain.user.Role;
+import com.inspire12.practice.api.domain.user.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**")
                     .permitAll()
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                .antMatchers("/api/v1/**").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .oauth2Login()

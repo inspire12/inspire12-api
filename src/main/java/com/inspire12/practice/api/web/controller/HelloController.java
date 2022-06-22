@@ -1,9 +1,9 @@
 package com.inspire12.practice.api.web.controller;
 
 import com.inspire12.practice.api.lib.measure.TimeChecker;
-import com.inspire12.practice.api.web.dto.HelloResponseDto;
-import com.inspire12.practice.api.web.dto.Product;
-import com.inspire12.practice.api.web.service.MockoonService;
+import com.inspire12.practice.api.domain.mock.HelloResponseDto;
+import com.inspire12.practice.api.domain.product.Product;
+import com.inspire12.practice.api.domain.mock.MockoonService;
 import java.security.MessageDigest;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

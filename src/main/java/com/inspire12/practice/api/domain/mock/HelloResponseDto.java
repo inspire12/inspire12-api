@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web.dto;
+package com.inspire12.practice.api.domain.mock;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

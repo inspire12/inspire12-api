@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web.dto;
+package com.inspire12.practice.api.domain.product;
 
 import java.io.Serializable;
 import java.util.List;

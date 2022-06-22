@@ -1,10 +1,6 @@
 package com.inspire12.practice.api.domain.posts;
 
 import com.inspire12.practice.api.config.datasource.CommunityPostDataSource;
-import com.inspire12.practice.api.web.dto.PostsListResponseDto;
-import com.inspire12.practice.api.web.dto.PostsResponseDto;
-import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;
-import com.inspire12.practice.api.web.dto.PostsUpdateRequestDto;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

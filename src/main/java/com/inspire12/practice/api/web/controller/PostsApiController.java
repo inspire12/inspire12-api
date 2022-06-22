@@ -1,10 +1,10 @@
 package com.inspire12.practice.api.web.controller;
 
 import com.inspire12.practice.api.domain.posts.PostsDomainService;
-import com.inspire12.practice.api.web.dto.PostsListResponseDto;
-import com.inspire12.practice.api.web.dto.PostsResponseDto;
-import com.inspire12.practice.api.web.dto.PostsSaveRequestDto;
-import com.inspire12.practice.api.web.dto.PostsUpdateRequestDto;
+import com.inspire12.practice.api.domain.posts.PostsListResponseDto;
+import com.inspire12.practice.api.domain.posts.PostsResponseDto;
+import com.inspire12.practice.api.domain.posts.PostsSaveRequestDto;
+import com.inspire12.practice.api.domain.posts.PostsUpdateRequestDto;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;

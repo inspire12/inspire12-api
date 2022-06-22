@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.web.controller;
 
-import com.inspire12.practice.api.web.dto.PostsResponseDto;
+import com.inspire12.practice.api.domain.posts.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.web.bind.annotation.GetMapping;
