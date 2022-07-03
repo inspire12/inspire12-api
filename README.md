@@ -11,3 +11,10 @@
 - [X] web socket & chat
 - [X] infra
 - [X] local h2 setting 
+
+# How to Start
+1. setting infra by script
+- infra/ 
+2. 시작 스크립트 
+- script/start
+3. 
