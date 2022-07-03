@@ -17,6 +17,10 @@ logging:
     com.inspire12.practice.api: info
     root: info
 
+springdoc:
+  swagger-ui:
+    path: index.html
+
 
 management:
   endpoints:

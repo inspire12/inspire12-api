@@ -1,5 +1,4 @@
-# Spring boot setting 
-
+# What to do in Spring boot? 
 - [X] Multi datasource
 - [X] logback format and rolling appender
 - [X] memory cache  
@@ -12,3 +11,7 @@
 - [X] infra
 - [X] local h2 setting 
 
+## setting 
+- [intellij lint](https://qkqhxla1.tistory.com/978)
+## Reference
+- [swagger](https://springdoc.org/#properties)
