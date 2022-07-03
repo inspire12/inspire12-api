@@ -1,5 +1,4 @@
-# Spring boot setting 
-
+# What to do in Spring boot? 
 - [X] Multi datasource
 - [X] logback format and rolling appender
 - [X] memory cache  
@@ -17,4 +16,9 @@
 - infra/ 
 2. 시작 스크립트 
 - script/start
-3. 
+
+
+## setting 
+- [intellij lint](https://qkqhxla1.tistory.com/978)
+## Reference
+- [swagger](https://springdoc.org/#properties)

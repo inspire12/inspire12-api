@@ -67,7 +67,7 @@ public class ApiDataSource {
     }
 
     @Bean(MASTER_DATASOURCE)
-    @ConfigurationProperties(prefix = "datasource.primary")
+    @ConfigurationProperties(prefix = "primary.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
@@ -96,7 +96,7 @@ public class ApiDataSource {
     }
 
     @Bean(SLAVE_DATASOURCE)
-    @ConfigurationProperties(prefix = "datasource.slave")
+    @ConfigurationProperties(prefix = "slave.datasource")
     public DataSource slaveDataSource() {
         return DataSourceBuilder.create().build();
     }

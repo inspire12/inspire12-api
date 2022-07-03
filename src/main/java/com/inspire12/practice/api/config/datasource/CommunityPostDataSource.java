@@ -25,7 +25,7 @@ public class CommunityPostDataSource {
     public final static String TX_MANAGER ="communityTransactionManager";
 
     @Bean
-    @ConfigurationProperties(prefix = "datasource.community")
+    @ConfigurationProperties(prefix = "community.datasource")
     public DataSource communityDataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
