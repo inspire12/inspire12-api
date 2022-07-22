@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web.socket;
+package com.inspire12.practice.api.presentation.socket;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

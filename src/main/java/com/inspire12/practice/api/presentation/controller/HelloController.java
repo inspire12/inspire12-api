@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.web.controller;
+package com.inspire12.practice.api.presentation.controller;
 
 import com.inspire12.practice.api.config.measure.TimeChecker;
 import com.inspire12.practice.api.domain.mock.HelloResponseDto;
