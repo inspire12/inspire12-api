@@ -22,6 +22,7 @@ springdoc:
     path: index.html
 
 
+
 management:
   endpoints:
     web:

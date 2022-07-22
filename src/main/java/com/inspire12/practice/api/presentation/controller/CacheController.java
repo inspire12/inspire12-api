@@ -1,10 +1,12 @@
 package com.inspire12.practice.api.presentation.controller;
 
 import com.inspire12.practice.api.config.measure.TimeChecker;
+import com.inspire12.practice.api.presentation.model.CommonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,18 +18,18 @@ public class CacheController {
     @GetMapping("/cache")
     @TimeChecker
     @Cacheable("hello")
-    public String hello() throws InterruptedException {
+    public ResponseEntity<String> hello() throws InterruptedException {
         Thread.sleep(10000);
-        return "hello";
+        return ResponseEntity.ok("hello");
     }
 
     @GetMapping("/cache/manager")
     @TimeChecker
-    public String hello2() {
+    public ResponseEntity<String> hello2() {
         Cache cache = cacheManager.getCache("hello");
         if (cache != null) {
-            return cache.getName();
+            return ResponseEntity.ok(cache.getName());
         }
-        return "failed";
+        return ResponseEntity.ok("failed");
     }
 }
