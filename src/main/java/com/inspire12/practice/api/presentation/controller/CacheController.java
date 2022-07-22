@@ -18,18 +18,18 @@ public class CacheController {
     @GetMapping("/cache")
     @TimeChecker
     @Cacheable("hello")
-    public ResponseEntity<String> hello() throws InterruptedException {
+    public CommonResponse<String> hello() throws InterruptedException {
         Thread.sleep(10000);
-        return ResponseEntity.ok("hello");
+        return new CommonResponse<>("hello");
     }
 
     @GetMapping("/cache/manager")
     @TimeChecker
-    public ResponseEntity<String> hello2() {
+    public CommonResponse<String> hello2() {
         Cache cache = cacheManager.getCache("hello");
         if (cache != null) {
-            return ResponseEntity.ok(cache.getName());
+            return new CommonResponse<>(cache.getName());
         }
-        return ResponseEntity.ok("failed");
+        return new CommonResponse<>("failed");
     }
 }

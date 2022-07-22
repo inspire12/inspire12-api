@@ -2,6 +2,7 @@ package com.inspire12.practice.api.presentation.controller;
 
 import com.inspire12.practice.api.config.measure.TimeChecker;
 import com.inspire12.practice.api.domain.mock.HelloResponseDto;
+import com.inspire12.practice.api.presentation.model.CommonResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,8 +14,8 @@ public class HelloController {
 
     @GetMapping("/hello")
     @TimeChecker
-    public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("hello");
+    public CommonResponse<String> hello() {
+        return new CommonResponse<>("hello");
     }
 
     @GetMapping("/api/v1/hello/dto")

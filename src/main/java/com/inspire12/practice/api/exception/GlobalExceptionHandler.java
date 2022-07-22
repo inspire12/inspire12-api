@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InsufficientAuthenticationException.class)
     protected ResponseEntity<ErrorResponse> handleInsufficientAuthenticationException(final InsufficientAuthenticationException e, final HttpServletRequest request) {
         ErrorCode errorCode = ErrorCode.FORBIDDEN;
-        log.error("FanPossibleException: {}", errorCode.getMessage(), e);
+        log.error("InsufficientAuthenticationException: {}", errorCode.getMessage(), e);
         return ResponseEntity
                 .status(errorCode.getHttpStatus())
                 .body(new ErrorResponse(
