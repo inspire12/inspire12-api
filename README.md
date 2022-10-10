@@ -15,7 +15,7 @@
 1. setting infra by script
 - infra/ 
 2. 시작 스크립트 
-- script/start
+- script/start.sh
 
 
 ## setting 
