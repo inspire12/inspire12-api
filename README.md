@@ -17,6 +17,13 @@
 2. 시작 스크립트 
 - script/start.sh
 
+# How to deploy
+| config: .github/workflows/github-action.yml
+- secrets
+- Runner 
+## Reference
+- [link](https://github.com/docker/login-action)
+
 
 ## setting 
 - [intellij lint](https://qkqhxla1.tistory.com/978)
