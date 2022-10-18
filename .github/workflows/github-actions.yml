@@ -7,7 +7,7 @@ on:
     branches: develop
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: real-coding-for-instructor-1
     steps:
       - uses: actions/checkout@v2
       - name: set up jdk 11
