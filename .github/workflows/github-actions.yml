@@ -7,7 +7,7 @@ on:
     branches: develop
 jobs:
   build:
-    runs-on: real-coding-for-instructor-1
+    runs-on: ubuntu:latest
     steps:
       - uses: actions/checkout@v2
       - name: set up jdk 11
@@ -57,3 +57,4 @@ jobs:
 
       - name: Image digest
         run: echo $
+
