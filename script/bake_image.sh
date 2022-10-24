@@ -1,5 +1,5 @@
-mv ../application-ouath.yml ./src/main/resources/application-ouath.yml
-mv ../application-real-db.yml ./src/main/resources/application-real-db.yml
+mv ../secret/application-oauth.yml ./src/main/resources/application-oauth.yml
+mv ../secret/application-real-db.yml ./src/main/resources/application-real-db.yml
 
 ./mvnw clean package -DskipTests=true
 ./mvnw package -DskipTests=true
