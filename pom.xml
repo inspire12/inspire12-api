@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.inspire12.practice</groupId>
     <artifactId>inspire12-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>inspire12-api</name>
     <description>test driven and spring option test</description>
     <properties>
