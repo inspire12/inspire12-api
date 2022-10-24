@@ -31,6 +31,7 @@ management:
           - "info"
           - "health"
           - "httptrace"
+          - "prometheus"
 server:
   port: 8080
 
