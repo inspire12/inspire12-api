@@ -9,4 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CommonResponse<T> {
     T result;
+
+    public static <T> CommonResponse<T> create(T result){
+        return new CommonResponse<>(result);
+    }
 }

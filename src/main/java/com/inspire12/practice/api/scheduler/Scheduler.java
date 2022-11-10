@@ -27,7 +27,6 @@ public class Scheduler {
         for (Map.Entry<String, ScheduledFuture<?>> a :scheduledFutureMap.entrySet()) {
             a.getValue().cancel(true);
         }
-//        scheduler.shutdown();
     }
 
     public void startScheduler(Runnable work, int seconds, String scheduleName) {

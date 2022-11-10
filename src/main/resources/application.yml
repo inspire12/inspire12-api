@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   session:
     store-type: jdbc
@@ -12,6 +14,15 @@ spring:
       allow-bean-definition-overriding: true
   profiles:
     include: oauth, real-db # https://console.cloud.google.com/apis/credentials/oauthclient
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+      server:
+        enabled: true
+      ui:
+        public-url: http://localhost:8000
+
 logging:
   level:
     com.inspire12.practice.api: info
@@ -24,6 +35,10 @@ springdoc:
 
 
 management:
+  info:
+    env:
+      enabled: true
+
   endpoints:
     web:
       exposure:
@@ -32,7 +47,7 @@ management:
           - "health"
           - "httptrace"
           - "prometheus"
-server:
-  port: 8080
+
 
 api-url: dummyjson.com
+

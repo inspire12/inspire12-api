@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.presentation.controller;
+package com.inspire12.practice.api.presentation.controller.sample;
 
 import com.inspire12.practice.api.domain.posts.PostsDomainService;
 import com.inspire12.practice.api.domain.posts.PostsListResponseDto;

@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.presentation.controller;
+package com.inspire12.practice.api.presentation.controller.sample;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
