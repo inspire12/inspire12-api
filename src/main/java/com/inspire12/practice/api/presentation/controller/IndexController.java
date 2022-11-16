@@ -27,6 +27,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/websocket")
+    public String websocket(Model model) {
+        return "websocket";
+    }
+
     @GetMapping("/chat")
     public String index2(Model model) {
 
