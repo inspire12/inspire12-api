@@ -1,19 +1,22 @@
 
-primary:
-  datasource:
-    jdbc-url: jdbc:h2:mem:inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-    username: sa
-    jdbc.initialize-schema: always
-slave:
-  datasource:
-    jdbc-url: jdbc:h2:mem:inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-    username: sa
-community:
-  datasource:
-    jdbc-url: jdbc:h2:mem:inspire12_community;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-    username: sa
 
 spring:
+  datasource:
+    primary:
+      url: jdbc:h2:~/inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
+      username: sa
+      initialization-mode: always
+
+    slave:
+      #    jdbc-url: jdbc:h2:mem:inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
+      url: jdbc:h2:~/inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
+      username: sa
+
+    community:
+      url: jdbc:h2:~/inspire12_community;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
+      username: sa
+      initialization-mode: always
+
   session:
     store-type: jdbc
     jdbc.initialize-schema: always
@@ -25,8 +28,8 @@ spring:
   h2:
     console:
       enabled: true
+
   jpa:
-    defer-datasource-initialization: true
     show-sql: true
     open-in-view: false
     properties:
@@ -36,9 +39,15 @@ spring:
 
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  sql:
+    init:
+      mode: always
 
 logging:
   level:
     root: info
+
+kafka:
+  enabled: false
 
 api-url: dummyjson.com
