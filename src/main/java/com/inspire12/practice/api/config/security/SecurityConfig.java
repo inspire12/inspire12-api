@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.config.security;
 
-import com.inspire12.practice.api.domain.user.CustomOAuth2UserService;
+import com.inspire12.practice.api.service.domain.user.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

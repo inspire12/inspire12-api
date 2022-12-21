@@ -1,10 +1,10 @@
 package com.inspire12.practice.api.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.inspire12.practice.api.domain.posts.Posts;
-import com.inspire12.practice.api.domain.posts.PostsRepository;
-import com.inspire12.practice.api.domain.posts.PostsSaveRequestDto;
-import com.inspire12.practice.api.domain.posts.PostsUpdateRequestDto;
+import com.inspire12.practice.api.service.domain.posts.Posts;
+import com.inspire12.practice.api.service.domain.posts.PostsRepository;
+import com.inspire12.practice.api.service.domain.posts.PostsSaveRequestDto;
+import com.inspire12.practice.api.service.domain.posts.PostsUpdateRequestDto;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

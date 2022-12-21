@@ -1,4 +1,4 @@
-# What to do in Spring boot? 
+# What to do in Spring boot project? 
 - [X] Multi datasource
 - [X] logback format and rolling appender
 - [X] memory cache  
@@ -20,12 +20,14 @@
 # How to deploy
 | config: .github/workflows/github-action.yml
 - secrets
-- Runner 
+- Runner
+
 ## Reference
 - [link](https://github.com/docker/login-action)
-
+- [swagger](https://springdoc.org/#properties)
+- []
 
 ## setting 
 - [intellij lint](https://qkqhxla1.tistory.com/978)
 ## Reference
-- [swagger](https://springdoc.org/#properties)
+

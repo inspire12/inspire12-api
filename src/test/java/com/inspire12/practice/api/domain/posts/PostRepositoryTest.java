@@ -1,5 +1,7 @@
 package com.inspire12.practice.api.domain.posts;
 
+import com.inspire12.practice.api.service.domain.posts.Posts;
+import com.inspire12.practice.api.service.domain.posts.PostsRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

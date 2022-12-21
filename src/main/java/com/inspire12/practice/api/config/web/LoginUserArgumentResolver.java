@@ -1,7 +1,7 @@
 package com.inspire12.practice.api.config.web;
 
 import com.inspire12.practice.api.config.security.aop.LoginUser;
-import com.inspire12.practice.api.domain.user.SessionUser;
+import com.inspire12.practice.api.service.domain.user.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

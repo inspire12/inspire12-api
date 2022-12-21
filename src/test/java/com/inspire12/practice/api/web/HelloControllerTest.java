@@ -1,7 +1,7 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.presentation.controller.sample.HelloController;
-import com.inspire12.practice.api.domain.mock.MockoonService;
+import com.inspire12.practice.api.controller.lab.HelloController;
+import com.inspire12.practice.api.service.domain.mock.MockoonService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

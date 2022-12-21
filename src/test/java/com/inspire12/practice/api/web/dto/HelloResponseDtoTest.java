@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.web.dto;
 
-import com.inspire12.practice.api.domain.mock.HelloResponseDto;
+import com.inspire12.practice.api.service.domain.mock.HelloResponseDto;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
