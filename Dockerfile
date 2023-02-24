@@ -1,4 +1,4 @@
-FROM repo.ncsoft.net/paige-docker-dev-local/fp:openjdk-11-base
+FROM openjdk:17-alpine
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar

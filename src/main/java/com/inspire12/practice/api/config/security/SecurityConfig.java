@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/actuator/**")
                 .permitAll()
                 .antMatchers("/api/v1/**").permitAll()
+                .antMatchers("/lab/**").permitAll()
                 .anyRequest().authenticated()
 //            .and()
 //                .exceptionHandling()

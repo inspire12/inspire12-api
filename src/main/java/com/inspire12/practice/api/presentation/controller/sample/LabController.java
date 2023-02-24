@@ -8,4 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LabController {
 
+    @GetMapping
+    public String hi() throws InterruptedException {
+        int i = 100;
+        while (i > 0) {
+//            Thread t = new Thread(, () -> System.out.println("hi"));
+
+//            t.start();
+            i--;
+        }
+        return "hi";
+    }
 }

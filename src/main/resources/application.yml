@@ -47,9 +47,11 @@ spring:
         public-url: http://localhost:8000
 
 logging:
+  config: classpath:logback/logback-${spring.profiles.active:local}.xml
   level:
     com.inspire12.practice.api: info
     root: info
+
 
 springdoc:
   swagger-ui:

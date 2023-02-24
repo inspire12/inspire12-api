@@ -1,0 +1,19 @@
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+
+    <!-- 로그 위치 -->
+    <property name="LOG_DIR" value="/usr/local/app/logs" />
+
+    <appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/access.log.%d{yyyyMMdd}</fileNamePattern>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%h %l %u [%date] "%r" %s %b %D "%i{Referer}" "%i{User-Agent}"</pattern>
+        </encoder>
+    </appender>
+
+    <appender-ref ref="ACCESS" />
+</configuration>
