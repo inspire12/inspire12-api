@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.config.auth;
 
-import com.inspire12.practice.api.config.auth.dto.SessionUser;
+import com.inspire12.practice.api.model.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;

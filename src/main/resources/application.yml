@@ -1,3 +1,5 @@
+server:
+  port: 31000
 spring:
   profiles:
     include: oauth,real-db
@@ -13,15 +15,9 @@ spring:
     open-in-view: false
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL57Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         storage_engine: innodb
 
   session:
-    store-type: jdbc
+    store-type: none
     jdbc.initialize-schema: always
-
-  sleuth:
-    trace-id128: true
-
-  zipkin:
-    enabled: false

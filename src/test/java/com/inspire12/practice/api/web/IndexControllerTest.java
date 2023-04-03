@@ -1,26 +1,43 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.domain.posts.PostsRepository;
+
+import javax.annotation.PostConstruct;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.web.client.RestTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource("classpath:application-test.yml")
+@SpringBootTest
 public class IndexControllerTest {
-    @Autowired
-    private TestRestTemplate restTemplate;
+//    @Autowired
+//    private TestRestTemplate restTemplate;
+
+    private RestTemplate restTemplate;
+
+    @PostConstruct
+    void init() {
+        restTemplate = new RestTemplate();
+    }
 
     @Test
     public void 메인페이지_로딩() {
+
         //when
 //        String body = this.restTemplate.getForObject("/", String.class);
 //        //then
 //        assertThat(body).contains("스프링부트로 시작하는 웹 서비스");
+    }
+    @Test
+    public void test() {
+        ResponseEntity<Object> exchange = restTemplate.exchange("https://httpbin.org/get",
+                HttpMethod.GET, HttpEntity.EMPTY, Object.class);
+
+        System.out.println(exchange);
     }
 }

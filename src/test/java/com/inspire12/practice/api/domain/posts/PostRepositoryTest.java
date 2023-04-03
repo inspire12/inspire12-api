@@ -1,15 +1,13 @@
 package com.inspire12.practice.api.domain.posts;
 
-import com.inspire12.practice.api.web.HelloController;
-import org.aspectj.lang.annotation.After;
+import com.inspire12.practice.api.model.dao.Posts;
+import com.inspire12.practice.api.repository.PostsRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
