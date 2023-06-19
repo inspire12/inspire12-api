@@ -1,8 +1,10 @@
 package com.inspire12.practice.api.config.auth;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
+@Configuration
 public class SecurityConfig { // extends WebSecurityConfigurerAdapter {
 //    private final CustomOAuth2UserService customOAuth2UserService;
 
