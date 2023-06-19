@@ -1,4 +1,3 @@
-#FROM repo.ncsoft.net/faip-docker-dev-local/common/fp:openjdk-17-base
 FROM openjdk:17-alpine
 MAINTAINER inspire12 ox4443@naver.com
 ENV TZ=Asia/Seoul
