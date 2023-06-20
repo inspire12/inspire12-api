@@ -19,24 +19,21 @@ package com.inspire12.practice.api.config;
 //import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 //import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 @Configuration
 public class ElasticsearchConfig {
 
-    @Value("${spring.elasticsearch.uris}")
-    private String uris;
-    @Value("${spring.elasticsearch.ip}")
-    private List<String> ip;
-    @Value("${spring.elasticsearch.port}")
-    private int port;
-    @Value("${spring.elasticsearch.connection-timeout}")
-    private long connectionTimeout;
-    @Value("${spring.elasticsearch.socket-timeout}")
-    private long socketTimeout;
+//    @Value("${spring.elasticsearch.uris}")
+//    private String uris;
+//    @Value("${spring.elasticsearch.ip}")
+//    private List<String> ip;
+//    @Value("${spring.elasticsearch.port}")
+//    private int port;
+//    @Value("${spring.elasticsearch.connection-timeout}")
+//    private long connectionTimeout;
+//    @Value("${spring.elasticsearch.socket-timeout}")
+//    private long socketTimeout;
 
 //    @Bean
 //    public RestClientBuilder restClient() {

@@ -34,7 +34,7 @@ public class TransactionProviderImpl implements TransactionProvider {
         try {
             runnable.run();
         } catch (Exception e) {
-            log.info("Error in do new transaction " + name , e);
+            log.info("Error in do new transaction " + name, e);
             transactionManager.rollback(txStatus);
         }
         transactionManager.commit(txStatus);
@@ -70,9 +70,10 @@ public class TransactionProviderImpl implements TransactionProvider {
                 T result = callable.call();
                 transactionManager.commit(txStatus);
                 return result;
-            } catch (ObjectOptimisticLockingFailureException | StaleObjectStateException | CannotAcquireLockException le) {
+            } catch (ObjectOptimisticLockingFailureException | StaleObjectStateException |
+                     CannotAcquireLockException le) {
                 tryingCount++;
-                log.debug("Retrying Update: {} {}" ,tryingCount, le.getMessage());
+                log.debug("Retrying Update: {} {}", tryingCount, le.getMessage());
                 try {
                     transactionManager.rollback(txStatus);
                 } catch (IllegalTransactionStateException itse) {
