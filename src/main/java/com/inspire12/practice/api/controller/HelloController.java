@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Slf4j
-@RequestMapping("/api/vi/hello")
+@RequestMapping("/api/v1/hello")
 @RestController
 public class HelloController {
 
