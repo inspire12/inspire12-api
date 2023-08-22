@@ -7,4 +7,4 @@ RUN mkdir -p /app/pinpoint-agent-2.5.0
 WORKDIR /app
 COPY pinpoint/pinpoint-agent-2.5.0.tar.gz /app/
 RUN tar -zxvf /app/pinpoint-agent-2.5.0.tar.gz -C /app/
-ADD inspire12-api.jar inspire12-api.jar
+ADD inspire12-api-0.0.1-SNAPSHOT.jar inspire12-api-0.0.1-SNAPSHOT.jar
