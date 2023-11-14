@@ -1,7 +1,5 @@
 package com.inspire12.practice.api.config.datasource;
 
-import com.inspire12.practice.api.domain.posts.Posts;
-import com.inspire12.practice.api.domain.user.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;

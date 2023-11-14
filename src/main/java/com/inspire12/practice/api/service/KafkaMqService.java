@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaMqService {
 
-    @KafkaListener(id = "myId", topics = "topic1", autoStartup = "${kafka.enabled}")
+    @KafkaListener(id = "myId", topics = "topic1", autoStartup = "${kafka.enabled:false}")
     public void listen(String in) {
         System.out.println(in);
     }

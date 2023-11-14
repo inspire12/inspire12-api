@@ -1,6 +1,5 @@
 package com.inspire12.practice.api.domain.user;
 
-import com.inspire12.practice.api.domain.user.User;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -11,9 +10,9 @@ public class SessionUser implements Serializable {
     private String email;
     private String picture;
 
-    public SessionUser(User user) {
-        this.name = user.getName();
-        this.email = user.getEmail();
-        this.picture = user.getPicture();
+    public SessionUser(Users users) {
+        this.name = users.getName();
+        this.email = users.getEmail();
+        this.picture = users.getPicture();
     }
 }
