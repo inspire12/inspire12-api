@@ -1,4 +1,4 @@
-#!/bin/zsh 
+#!/bin/zsh
 
 help() 
 {
@@ -14,6 +14,7 @@ done
 
 if [ "shell" = "$b" ];
 then
+    echo "bash"
     shellrc=$HOME/.bashrc
 elif [ "zsh" = "$b" ];
 then
@@ -45,7 +46,18 @@ get_resource_info() {
 # echo "# zsh setting"
 set_java() {
     echo "# java setting"
+    RPROMPT='%D{%L:%M:%S} '$RPROMPT
+    echo "JAVA_HOME_11=$(/usr/libexec/java_home -v11)" | tee -a $shellrc
+    echo "JAVA_HOME_8=$(/usr/libexec/java_home -v1.8)" | tee -a $shellrc
+    echo "JAVA_HOME_14=$(/usr/libexec/java_home -v14)" | tee -a $shellrc
+    echo "JAVA_HOME_17=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home" | tee -a $shellrc
+    echo "JAVA_HOME_GRAAL=/Library/Java/JavaVirtualMachines/graalvm-ce-java17-22.3.0/Contents/Home" | tee -a $shellrc
+    echo "JAVA_HOME=$JAVA_HOME_11" | tee -a $shellrc
 
+    echo "alias j17="export JAVA_HOME=$JAVA_HOME_17"" | tee -a $shellrc
+    echo "alias j14="export JAVA_HOME=$JAVA_HOME_14"" | tee -a $shellrc
+    echo "alias j8="export JAVA_HOME=$JAVA_HOME_8"" | tee -a $shellrc
+    echo "alias j11="export JAVA_HOME=$JAVA_HOME_11"" | tee -a $shellrc
 }
 
 set_python() {    
@@ -56,6 +68,7 @@ set_python() {
     sudo apt-get install libffi-dev python-dev python3-dev
     python -m pip install --upgrade pip
     python -V
+    eval "$(pyenv init -)"
 }
 
 set_directory() {
@@ -94,6 +107,8 @@ set_k8s() {
 # set_python
 # set_directory
 # set_k8s
-print_env 
+print_env
+get_resource_info
+set_k8s
 
 echo "# finish"

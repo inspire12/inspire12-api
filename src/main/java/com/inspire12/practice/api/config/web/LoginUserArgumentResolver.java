@@ -2,6 +2,7 @@ package com.inspire12.practice.api.config.web;
 
 import com.inspire12.practice.api.config.security.aop.LoginUser;
 import com.inspire12.practice.api.domain.user.SessionUser;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -9,8 +10,6 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-
-import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Component

@@ -1,8 +1,5 @@
 package com.inspire12.practice.api.config.datasource;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -15,11 +12,15 @@ import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
+
 
 //https://www.baeldung.com/spring-data-jpa-multiple-databases
 @Configuration
 public class ApiDataSource {
-    public final static String TX_MANAGER ="transactionManager";
+    public final static String TX_MANAGER = "transactionManager";
 
     public static final String PRIMARY_DATASOURCE = "primaryDataSource";
     public static final String SLAVE_DATASOURCE = "slaveDataSource";
@@ -48,7 +49,7 @@ public class ApiDataSource {
 
     @Bean
     @DependsOn("routingDataSource")
-    public LazyConnectionDataSourceProxy dataSource(DataSource routingDataSource){
+    public LazyConnectionDataSourceProxy dataSource(DataSource routingDataSource) {
         return new LazyConnectionDataSourceProxy(routingDataSource);
     }
 

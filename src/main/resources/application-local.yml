@@ -1,20 +1,21 @@
-
-
 spring:
   datasource:
     primary:
-      url: jdbc:h2:~/inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      username: sa
+      url: jdbc:mysql://${MYSQL_URL:localhost:3306}/inspire12_api?serverZoneId=Asia/Seoul;
+      username: root
+      password: password
       initialization-mode: always
 
+
     slave:
-      #    jdbc-url: jdbc:h2:mem:inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      url: jdbc:h2:~/inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      username: sa
+      url: jdbc:mysql://${MYSQL_URL:localhost:3306}/inspire12_api?serverZoneId=Asia/Seoul;
+      username: root
+      password: password
 
     community:
-      url: jdbc:h2:~/inspire12_community;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      username: sa
+      url: jdbc:mysql://${MYSQL_URL:localhost:3306}/inspire12_community?serverZoneId=Asia/Seoul;
+      username: root
+      password: password
       initialization-mode: always
 
   session:
@@ -27,7 +28,7 @@ spring:
 
   h2:
     console:
-      enabled: true
+      enabled: false
 
   jpa:
     show-sql: true

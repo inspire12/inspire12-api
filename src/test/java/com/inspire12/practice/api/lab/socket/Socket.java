@@ -1,15 +1,14 @@
 package com.inspire12.practice.api.lab.socket;
 
-import lombok.extern.java.Log;
+import jakarta.websocket.OnClose;
+import jakarta.websocket.OnError;
+import jakarta.websocket.OnMessage;
+import jakarta.websocket.OnOpen;
+import jakarta.websocket.Session;
+import jakarta.websocket.server.ServerEndpoint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -18,9 +17,15 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @Component
 @ServerEndpoint(value = "/websocket")
 public class Socket {
-    private Session session;
     public static Set<Socket> listeners = new CopyOnWriteArraySet<>();
     private static int onlineCount = 0;
+    private Session session;
+
+    public static void broadcast(String message) {
+        for (Socket listener : listeners) {
+            listener.sendMessage(message);
+        }
+    }
 
     @OnOpen
     public void onOpen(Session session) {
@@ -48,12 +53,6 @@ public class Socket {
         log.warn("onClose called, error: {}", throwable.getMessage());
         listeners.remove(this);
         onlineCount--;
-    }
-
-    public static void broadcast(String message) {
-        for (Socket listener: listeners) {
-            listener.sendMessage(message);
-        }
     }
 
     private void sendMessage(String message) {

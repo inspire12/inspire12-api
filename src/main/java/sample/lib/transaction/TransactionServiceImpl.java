@@ -6,7 +6,6 @@ import org.hibernate.StaleObjectStateException;
 import org.springframework.dao.CannotAcquireLockException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.IllegalTransactionStateException;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
@@ -22,8 +21,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     private static final long DEFAULT_BACKOFF_MILLISECONDS = 500;
     private static final int DEFAULT_RETRYING_COUNT = 3;
+
+    private final PlatformTransactionManager transactionManager;
+
     private String name;
-    private PlatformTransactionManager transactionManager;
+
 
     @Override
     public void doInNewTransaction(Runnable runnable) {
@@ -75,7 +77,8 @@ public class TransactionServiceImpl implements TransactionService {
                 T result = callable.call();
                 transactionManager.commit(txStatus);
                 return result;
-            } catch (ObjectOptimisticLockingFailureException | StaleObjectStateException | CannotAcquireLockException le) {
+            } catch (ObjectOptimisticLockingFailureException | StaleObjectStateException |
+                     CannotAcquireLockException le) {
                 tryingCount++;
                 log.debug("Retrying Update: {} {}", tryingCount, le.getMessage());
                 try {

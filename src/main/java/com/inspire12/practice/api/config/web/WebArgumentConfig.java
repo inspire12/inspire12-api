@@ -1,13 +1,14 @@
 package com.inspire12.practice.api.config.web;
 
-import com.inspire12.practice.api.config.web.LoginUserArgumentResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+@EnableWebMvc
 @RequiredArgsConstructor
 @Configuration
 public class WebArgumentConfig implements WebMvcConfigurer {
