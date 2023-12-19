@@ -1,27 +1,58 @@
 package com.inspire12.practice.api.config.security;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @RequiredArgsConstructor
-//@EnableWebSecurity
+@EnableWebFluxSecurity
+@EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-//    private final CustomOAuth2UserService customOAuth2UserService;
-//    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
-//    private final CustomAccessDeniedHandler customAccessDeniedHandler;
+    @Bean
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        return http
+                .x509(withDefaults())
+                .authorizeExchange(a -> a
+                        .pathMatchers(HttpMethod.GET, "/api/**").permitAll()
+                        .pathMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
+                        //.pathMatchers("/users/{user}/**").access(this::currentUserMatchesPath)
+                        .anyExchange().permitAll()
+                )
+                .build();
+    }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .securityMatcher("/api/**")
-//                .authorizeHttpRequests(authorize -> authorize
-//                        .anyRequest().hasRole("ADMIN")
-//                )
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
-//                .httpBasic(withDefaults());
-//        return http.build();
+    @Bean
+    public MapReactiveUserDetailsService userDetailsService() {
+        UserDetails user = User.withUsername("user")
+                .password("user")
+                .roles("USER")
+                .build();
+        return new MapReactiveUserDetailsService(user);
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http
+                .userDetailsService(username -> User.withUsername("user")
+                        .password("user")
+                        .roles("USER")
+                        .build())
+                .authorizeHttpRequests((authorize) -> authorize
+                        .anyRequest().permitAll()
+                ).build();
+    }
 
     //        http
 //                .csrf().disable() //
@@ -52,4 +83,5 @@ public class SecurityConfig {
 //                .userService(customOAuth2UserService);
 //    }
 }
+
 
