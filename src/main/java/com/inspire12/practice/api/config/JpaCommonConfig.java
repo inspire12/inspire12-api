@@ -17,9 +17,6 @@ public class JpaCommonConfig {
 
     //https://www.marcobehler.com/guides/spring-transaction-management-transactional-in-depth#_how_spring_and_jpa_hibernate_transaction_management_works
 
-
-    private final PlatformTransactionManager transactionManager;
-
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -28,8 +25,4 @@ public class JpaCommonConfig {
         return transactionManager;
     }
 
-    @Bean
-    public TransactionTemplate transactionTemplate() {
-        return new TransactionTemplate(transactionManager);
-    }
-}
+ }

@@ -1,6 +1,5 @@
 package com.inspire12.practice.api;
 
-import com.inspire12.practice.api.config.measure.TimeChecker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +8,10 @@ import org.springframework.cloud.openfeign.FeignAutoConfiguration;
 
 @ImportAutoConfiguration({FeignAutoConfiguration.class})
 @EnableFeignClients
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.inspire12.practice.api")
 public class ApiApplication {
 
-    @TimeChecker // 부팅
+//    @TimeChecker // 부팅
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
     }

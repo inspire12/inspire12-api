@@ -1,7 +1,7 @@
 package com.inspire12.practice.api.config.web;
 
 import com.inspire12.practice.api.config.security.aop.LoginUser;
-import com.inspire12.practice.api.domain.user.SessionUser;
+import com.inspire12.practice.api.module.user.domain.SessionUser;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;

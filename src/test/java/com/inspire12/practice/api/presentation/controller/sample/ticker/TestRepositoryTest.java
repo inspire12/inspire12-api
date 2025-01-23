@@ -1,5 +1,6 @@
 package com.inspire12.practice.api.presentation.controller.sample.ticker;
 
+import com.inspire12.practice.api.module.test.presentation.controller.sample.ticker.TickerTrade;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,5 @@
 package com.inspire12.practice.api.web;
 
-import com.inspire12.practice.api.domain.posts.PostsRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
