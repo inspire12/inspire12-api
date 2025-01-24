@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @Builder
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table
+@Table(name = "ticker_trade")
 @IdClass(TickerTradeId.class)
 public class TickerTrade {
 

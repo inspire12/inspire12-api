@@ -1,5 +1,6 @@
 package com.inspire12.practice.api.config.security;
 
+import com.inspire12.practice.api.module.user.infrastructure.adapter.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,12 +8,15 @@ import org.springframework.http.HttpMethod;
 import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @RequiredArgsConstructor
@@ -20,6 +24,11 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final CustomOAuth2UserService customOAuth2UserService;
+
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
@@ -36,52 +45,46 @@ public class SecurityConfig {
     @Bean
     public MapReactiveUserDetailsService userDetailsService() {
         UserDetails user = User.withUsername("user")
-                .password("user")
-                .roles("USER")
-                .build();
+            .password("user")
+            .roles("USER")
+            .build();
         return new MapReactiveUserDetailsService(user);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .userDetailsService(username -> User.withUsername("user")
-                        .password("user")
-                        .roles("USER")
-                        .build())
-                .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().permitAll()
+            .csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests(auth ->
+                    auth
+                        .requestMatchers("/h2-console/**", "/favicon.ico").permitAll()
+                        .anyRequest().authenticated()
                 ).build();
-    }
-
-    //        http
-//                .csrf().disable() //
-//                .headers().frameOptions().disable() //
-////            .and()
-////                .sessionManagement()
-////                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//        return
+//            http
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(auth ->
+//                    auth.anyRequest().authenticated()
+//                )
+//                .sessionManagement(session -> {
+//                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                })
 //
-//                .and()
-//                .formLogin().disable()
-//                .logout()
-//                .logoutSuccessUrl("/")
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/actuator/**")
-//                .permitAll()
-//                .antMatchers("/api/v1/**").permitAll()
-//                .antMatchers("/lab/**").permitAll()
-//                .anyRequest().authenticated()
-////            .and()
-////                .exceptionHandling()
-////                .authenticationEntryPoint(customAuthenticationEntryPoint)
-////                .accessDeniedHandler(customAccessDeniedHandler)
-//                .and()
+//                .formLogin(AbstractHttpConfigurer::disable)
+//                .exceptionHandling(exceptionHandler -> {
+//                        exceptionHandler
+//                            .authenticationEntryPoint(customAuthenticationEntryPoint)
+//                            .accessDeniedHandler(customAccessDeniedHandler);
+//                    }
+//                )
+//                .logout(httpSecurityLogoutConfigurer -> httpSecurityLogoutConfigurer.logoutSuccessUrl("/"))
+//
 //                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .oauth2Login()
-//                .userInfoEndpoint()
-//                .userService(customOAuth2UserService);
-//    }
+//                .oauth2Login(oauth -> {
+//                    oauth.userInfoEndpoint(userInfoEndpointConfig ->
+//                        userInfoEndpointConfig.userService(customOAuth2UserService));
+//                }).build();
+    }
 }
 
 

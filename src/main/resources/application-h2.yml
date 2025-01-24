@@ -3,20 +3,8 @@ spring:
   #    exclude: org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
 
   datasource:
-    primary:
-      url: jdbc:h2:~/inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      username: sa
-      initialization-mode: always
-
-    slave:
-      #    jdbc-url: jdbc:h2:mem:inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      url: jdbc:h2:~/inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      username: sa
-
-    community:
-      url: jdbc:h2:~/inspire12_community;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
-      username: sa
-      initialization-mode: always
+    hikari:
+      jdbc-url: jdbc:h2:./inspire12_api;MODE=MYSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1
 
   session:
     store-type: jdbc
@@ -29,6 +17,7 @@ spring:
   h2:
     console:
       enabled: true
+
 
   jpa:
     show-sql: true

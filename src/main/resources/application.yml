@@ -33,12 +33,8 @@ spring:
     allow-circular-references: true
   profiles:
     #    include: oauth, real-db, docker # https://console.cloud.google.com/apis/credentials/oauthclient
-    include: oauth, local, docker # https://console.cloud.google.com/apis/credentials/oauthclient
+    include: local, h2 # https://console.cloud.google.com/apis/credentials/oauthclient
 
-  kafka:
-    consumer:
-      auto-offset-reset: earliest
-      bootstrap-servers: localhost:9092
 
 
   boot:
