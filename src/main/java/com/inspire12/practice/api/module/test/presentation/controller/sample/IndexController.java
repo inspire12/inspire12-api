@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.module.test.presentation.controller.sample;
 
-import com.inspire12.practice.api.config.security.aop.LoginUser;
+//import com.inspire12.practice.api.config.security.aop.LoginUser;
 import com.inspire12.practice.api.module.posts.infrastructure.apdater.PostsRepositoryAdapter;
 import com.inspire12.practice.api.module.posts.presentation.response.PostResponse;
 import com.inspire12.practice.api.module.user.domain.SessionUser;
@@ -19,7 +19,9 @@ public class IndexController {
 
     // view resolver
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) {
+    public String index(Model model,
+//                        @LoginUser
+                        SessionUser user) {
 //        model.addAttribute("posts",  postsService.findAllDesc(Pageable.unpaged(), user.));
         if (user != null) {
             model.addAttribute("userName", user.getName());

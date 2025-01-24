@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.config.web;
 
-import com.inspire12.practice.api.config.security.aop.LoginUser;
+//import com.inspire12.practice.api.config.security.aop.LoginUser;
 import com.inspire12.practice.api.module.user.domain.SessionUser;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +20,11 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        boolean isLoginUserAnnotation = methodParameter.getParameterAnnotation(LoginUser.class) != null;
-        boolean isUserClass = SessionUser.class.equals(methodParameter.getParameterType());
-
-        return isLoginUserAnnotation && isUserClass;
+//        boolean isLoginUserAnnotation = methodParameter.getParameterAnnotation(LoginUser.class) != null;
+//        boolean isUserClass = SessionUser.class.equals(methodParameter.getParameterType());
+//
+//        return isLoginUserAnnotation && isUserClass;
+        return true;
     }
 
     @Override
