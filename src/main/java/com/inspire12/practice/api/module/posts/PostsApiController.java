@@ -8,6 +8,7 @@ import com.inspire12.practice.api.module.posts.presentation.request.PostsUpdateR
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,9 @@ public class PostsApiController {
 
     @GetMapping("/api/v1/posts")
     public PostsListResponse findAll(@PageableDefault Pageable pageRequest, @RequestParam Long userId) {
+        if (pageRequest == null) {
+            pageRequest = PageRequest.of(0, 10);
+        }
         return postUsecase.getPostListResponse(pageRequest, userId);
     }
 
