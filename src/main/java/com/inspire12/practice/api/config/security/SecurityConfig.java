@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,9 +19,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @RequiredArgsConstructor
-@EnableWebFluxSecurity
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -29,37 +32,36 @@ public class SecurityConfig {
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
     private final CustomOAuth2UserService customOAuth2UserService;
 
-    @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        return http
-                .x509(withDefaults())
-                .authorizeExchange(a -> a
-                        .pathMatchers(HttpMethod.GET, "/api/**").permitAll()
-                        .pathMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
-                        //.pathMatchers("/users/{user}/**").access(this::currentUserMatchesPath)
-                        .anyExchange().permitAll()
-                )
-                .build();
-    }
+//    @Bean
+//    public MapReactiveUserDetailsService userDetailsService() {
+//        UserDetails user = User.withUsername("user")
+//            .password("user")
+//            .roles("USER")
+//            .build();
+//        return new MapReactiveUserDetailsService(user);
+//    }
 
-    @Bean
-    public MapReactiveUserDetailsService userDetailsService() {
-        UserDetails user = User.withUsername("user")
-            .password("user")
-            .roles("USER")
-            .build();
-        return new MapReactiveUserDetailsService(user);
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return web -> web.ignoring()
+//            .requestMatchers("/", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**"); // 정적 리소스 제외
+//    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
+        http
+            .cors(cors -> cors.configurationSource(request -> {
+                CorsConfiguration config = new CorsConfiguration();
+                config.setAllowedOrigins(List.of("*")); // 모든 오리진 허용
+                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+                return config;
+            }))
             .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(auth ->
-                    auth
-                        .requestMatchers("/h2-console/**", "/favicon.ico").permitAll()
-                        .anyRequest().authenticated()
-                ).build();
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/api/v1/**", "/h2-console/**", "/favicon.ico").permitAll()
+                .anyRequest().authenticated()
+        );
+        return http.build();
 //        return
 //            http
 //                .csrf(AbstractHttpConfigurer::disable)
