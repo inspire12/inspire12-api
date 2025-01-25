@@ -3,8 +3,6 @@ package com.inspire12.practice.api.websocket.practice;
 
 import com.inspire12.practice.api.websocket.practice.crypto.AES256;
 
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class PrintOpsData {
 
