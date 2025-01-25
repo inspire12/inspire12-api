@@ -2,7 +2,7 @@ package com.inspire12.practice.api.websocket.practice;
 
 
 import com.inspire12.practice.api.websocket.practice.crypto.AES256;
-import net.minidev.json.JSONObject;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -93,117 +93,117 @@ public class PrintOpsData {
         System.out.println("=======================================================");
     }
 
-    void printMessage(String message) {
-
-        System.out.println("[RECV] :" + message);
-
-        char fStr = message.charAt(0);
-
-        // 첫데이터로 전문인지 json 데이터인지 구분을해서 처리를 해야한다.
-        if (fStr == '0') {
-            // 암호화 되지 않은 전문 처리
-            String[] mData = message.split("\\|");
-            String tr_id = mData[1];
-            //System.out.println("trid : "+tr_id);
-
-            switch (tr_id) {
-                case "H0STASP0":
-                    System.out.println("[" + tr_id + "]" + "###################################################");
-                    stockhoka(mData[3]);
-                    break;
-                case "H0STCNT0":
-                    System.out.println("[" + tr_id + "]" + "###################################################");
-                    stockspurchase(mData[3]);
-                    break;
-                default:
-                    break;
-            }
-
-        } else if (fStr == '1') {
-            // 암호화 된 전문 처리, 주식체결통보 데이터만 암호화 되서 오므로 해당데이터만 처리
-            String[] mData = message.split("\\|");
-            String tr_id = mData[1];
-            //System.out.println("trid : "+tr_id);
-
-            switch (tr_id) {
-                case "H0STCNI0":    // 주식체결통보(고객용)
-                case "H0STCNI9":    // 주식체결통보(모의투자)
-                    System.out.println("[" + tr_id + "]" + "###################################################");
-                    stocksigningnotice(mData[3]);
-                    break;
-                default:
-                    break;
-            }
-
-        } else {
-            // 일반 json 처리
-            JSONParser parser = new JSONParser();
-            Object obj;
-            JSONObject jsonObj;
-            try {
-                obj = parser.parse(message);
-                jsonObj = (JSONObject) obj;
-                //System.out.println("================================");
-
-                //System.out.println("[RECV] :"+jsonObj.toString());
-                JSONObject header = (JSONObject) jsonObj.get("header");
-
-                String tmp_key = "";
-                String tmp_iv = "";
-
-                // tr_id 로 데이터처리를 구분한다.
-                String tr_id = header.get("tr_id").toString();
-
-                // 일반 요청에 대한 응답 데이터일 경우
-                if (!(tr_id.equals("PINGPONG"))) {
-                    // 일반 요청에 대한 응답 데이터에만 body 가 있다.
-                    JSONObject body = (JSONObject) jsonObj.get("body");
-                    String rt_cd = body.get("rt_cd").toString();
-
-                    String rt_msg = body.get("msg_cd").toString();
-                    String msg = body.get("msg1").toString();
-                    // rt_cd 가 '0'인경우에만 처리한다.
-                    if (rt_cd.equals("0")) {
-                        JSONObject output = (JSONObject) body.get("output");
-                        //String rt_msg = body.get("msg_cd").toString();
-                        tmp_key = output.get("key").toString();
-                        tmp_iv = output.get("iv").toString();
-                    } else {
-                        rt_msg = body.get("msg1").toString();
-                    }
-
-
-                    switch (tr_id) {
-                        case "H0STASP0":    // 주식호가
-                            System.out.println("주식호가 [" + rt_msg + "] [" + msg + "]");
-                            break;
-                        case "H0STCNT0":
-                            System.out.println("주식체결 [" + rt_msg + "] [" + msg + "]");
-                            break;
-                        case "H0STCNI0":    // 주식체결통보(고객용)
-                        case "H0STCNI9":    // 주식체결통보(모의투자)
-                            System.out.println("주식체결통보 [" + rt_msg + "] [" + msg + "]");
-                            // 체결통보일 경우 복호화를 해야 하므로 key, iv를 저장해서 쓴다.
-                            WebSocketOps.Key = tmp_key;
-                            WebSocketOps.iv = tmp_iv;
-                            System.out.printf(">> [%s] : SAVE KEY[%s] IV[%s]\r\n", tr_id, tmp_key, tmp_iv);
-                            //stocksigningnotice(message);
-                            break;
-                        default:
-                            break;
-                    }
-                } else if (tr_id.equals("PINGPONG"))    // PINGPONG 데이터일 경우
-                {
-                    WebSocketOps.clientEndPoint.sendMessage(message);
-                    System.out.println("[SEND] :" + message);
-                }
-
-            } catch (ParseException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-        }
-
-    }
+//    void printMessage(String message) {
+//
+//        System.out.println("[RECV] :" + message);
+//
+//        char fStr = message.charAt(0);
+//
+//        // 첫데이터로 전문인지 json 데이터인지 구분을해서 처리를 해야한다.
+//        if (fStr == '0') {
+//            // 암호화 되지 않은 전문 처리
+//            String[] mData = message.split("\\|");
+//            String tr_id = mData[1];
+//            //System.out.println("trid : "+tr_id);
+//
+//            switch (tr_id) {
+//                case "H0STASP0":
+//                    System.out.println("[" + tr_id + "]" + "###################################################");
+//                    stockhoka(mData[3]);
+//                    break;
+//                case "H0STCNT0":
+//                    System.out.println("[" + tr_id + "]" + "###################################################");
+//                    stockspurchase(mData[3]);
+//                    break;
+//                default:
+//                    break;
+//            }
+//
+//        } else if (fStr == '1') {
+//            // 암호화 된 전문 처리, 주식체결통보 데이터만 암호화 되서 오므로 해당데이터만 처리
+//            String[] mData = message.split("\\|");
+//            String tr_id = mData[1];
+//            //System.out.println("trid : "+tr_id);
+//
+//            switch (tr_id) {
+//                case "H0STCNI0":    // 주식체결통보(고객용)
+//                case "H0STCNI9":    // 주식체결통보(모의투자)
+//                    System.out.println("[" + tr_id + "]" + "###################################################");
+//                    stocksigningnotice(mData[3]);
+//                    break;
+//                default:
+//                    break;
+//            }
+//
+//        } else {
+//            // 일반 json 처리
+//            JSONParser parser = new JSONParser();
+//            Object obj;
+//            JSONObject jsonObj;
+//            try {
+//                obj = parser.parse(message);
+//                jsonObj = (JSONObject) obj;
+//                //System.out.println("================================");
+//
+//                //System.out.println("[RECV] :"+jsonObj.toString());
+//                JSONObject header = (JSONObject) jsonObj.get("header");
+//
+//                String tmp_key = "";
+//                String tmp_iv = "";
+//
+//                // tr_id 로 데이터처리를 구분한다.
+//                String tr_id = header.get("tr_id").toString();
+//
+//                // 일반 요청에 대한 응답 데이터일 경우
+//                if (!(tr_id.equals("PINGPONG"))) {
+//                    // 일반 요청에 대한 응답 데이터에만 body 가 있다.
+//                    JSONObject body = (JSONObject) jsonObj.get("body");
+//                    String rt_cd = body.get("rt_cd").toString();
+//
+//                    String rt_msg = body.get("msg_cd").toString();
+//                    String msg = body.get("msg1").toString();
+//                    // rt_cd 가 '0'인경우에만 처리한다.
+//                    if (rt_cd.equals("0")) {
+//                        JSONObject output = (JSONObject) body.get("output");
+//                        //String rt_msg = body.get("msg_cd").toString();
+//                        tmp_key = output.get("key").toString();
+//                        tmp_iv = output.get("iv").toString();
+//                    } else {
+//                        rt_msg = body.get("msg1").toString();
+//                    }
+//
+//
+//                    switch (tr_id) {
+//                        case "H0STASP0":    // 주식호가
+//                            System.out.println("주식호가 [" + rt_msg + "] [" + msg + "]");
+//                            break;
+//                        case "H0STCNT0":
+//                            System.out.println("주식체결 [" + rt_msg + "] [" + msg + "]");
+//                            break;
+//                        case "H0STCNI0":    // 주식체결통보(고객용)
+//                        case "H0STCNI9":    // 주식체결통보(모의투자)
+//                            System.out.println("주식체결통보 [" + rt_msg + "] [" + msg + "]");
+//                            // 체결통보일 경우 복호화를 해야 하므로 key, iv를 저장해서 쓴다.
+//                            WebSocketOps.Key = tmp_key;
+//                            WebSocketOps.iv = tmp_iv;
+//                            System.out.printf(">> [%s] : SAVE KEY[%s] IV[%s]\r\n", tr_id, tmp_key, tmp_iv);
+//                            //stocksigningnotice(message);
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//                } else if (tr_id.equals("PINGPONG"))    // PINGPONG 데이터일 경우
+//                {
+//                    WebSocketOps.clientEndPoint.sendMessage(message);
+//                    System.out.println("[SEND] :" + message);
+//                }
+//
+//            } catch (ParseException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//
+//        }
+//
+//    }
 }

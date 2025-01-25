@@ -1,13 +1,8 @@
 package com.inspire12.practice.api.websocket.practice;
 
-import javax.websocket.ClientEndpoint;
-import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
-import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.WebSocketContainer;
+
+import jakarta.websocket.*;
+
 import java.net.URI;
 //import java.net.URI;
 
@@ -66,7 +61,7 @@ public class WebsocketClientEndpoint {
         if (this.messageHandler != null) {
             //this.messageHandler.handleMessage("[RECV] :"+message);
             PrintOpsData printOpsData = new PrintOpsData();
-            printOpsData.printMessage(message);
+//            printOpsData.printMessage(message);
         }
     }
 

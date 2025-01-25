@@ -1,10 +1,5 @@
 FROM openjdk:17-alpine
-MAINTAINER inspire12 ox4443@naver.com
-ENV TZ=Asia/Seoul
-RUN ln -snf /usr/share/zoneinfo/\$TZ /etc/localtime && echo \$TZ > /etc/timezone
-RUN mkdir -p /app
-RUN mkdir -p /app/pinpoint-agent-2.5.0
-WORKDIR /app
-COPY pinpoint/pinpoint-agent-2.5.0.tar.gz /app/
-RUN tar -zxvf /app/pinpoint-agent-2.5.0.tar.gz -C /app/
-ADD inspire12-api-0.0.1-SNAPSHOT.jar inspire12-api-0.0.1-SNAPSHOT.jar
+VOLUME /tmp
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-Dspring.profiles.active=local", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]

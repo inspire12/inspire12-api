@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo
+  name: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - image: inspire12/inspire12-api:0.0.1-SNAPSHOT
+        name: inspire12-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: demo
+  name: demo
+spec:
+  ports:
+  - name: inspire12-api-svc-8080
+    port: 8080
+    protocol: TCP
+    nodePort: 31111
+    targetPort: 8080
+  selector:
+    app: demo
+  type: NodePort

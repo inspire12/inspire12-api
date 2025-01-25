@@ -1,16 +1,17 @@
 server:
-  port: 31000
+  port: 8080
+  servlet:
+    encoding:
+      force-response: true
 spring:
-  profiles:
-    include: oauth,real-db
-  h2:
-    console:
-      enabled: true
-  datasource:
-    hikari:
-      jdbc-url: jdbc:h2:mem:testdb;MODE=MYSQL
-      username: sa
+
   jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    defer-datasource-initialization: true
     show-sql: true
     open-in-view: false
     properties:
@@ -19,5 +20,59 @@ spring:
         storage_engine: innodb
 
   session:
-    store-type: none
+    store-type: jdbc
     jdbc.initialize-schema: always
+  sleuth:
+    trace-id128: true
+  zipkin:
+    enabled: false
+  cache:
+    cache-names: hello
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  profiles:
+    #    include: oauth, real-db, docker # https://console.cloud.google.com/apis/credentials/oauthclient
+    include: local, h2 # https://console.cloud.google.com/apis/credentials/oauthclient
+
+
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+      server:
+        enabled: true
+      ui:
+        public-url: http://localhost:8000
+
+logging:
+  config: classpath:logback/logback-${spring.profiles.active:local}.xml
+  level:
+    com.inspire12.practice.api: info
+    root: info
+#    org.springframework.security: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: index.html
+
+
+
+management:
+  info:
+    env:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "info"
+          - "health"
+          - "httptrace"
+          - "prometheus"
+
+
+api-url: dummyjson.com
+

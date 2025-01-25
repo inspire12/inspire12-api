@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.config.web;
 
-import com.inspire12.practice.api.config.auth.LoginUserArgumentResolver;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

@@ -4,8 +4,7 @@ import feign.Retryer;
 import feign.codec.ErrorDecoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import reactivefeign.retry.BasicReactiveRetryPolicy;
-import reactivefeign.retry.ReactiveRetryPolicy;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,9 +21,5 @@ public class FeignClientConfig {
         return new Retryer.Default(100L, TimeUnit.SECONDS.toMillis(3L), 3);
     }
 
-    @Bean
-    public ReactiveRetryPolicy reactiveRetryPolicy() {
-        return BasicReactiveRetryPolicy.retryWithBackoff(3, 1000L);
-    }
 
 }
