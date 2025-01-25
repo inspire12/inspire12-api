@@ -51,7 +51,7 @@ logging:
   level:
     com.inspire12.practice.api: info
     root: info
-
+#    org.springframework.security: DEBUG
 
 springdoc:
   swagger-ui:
