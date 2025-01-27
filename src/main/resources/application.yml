@@ -76,3 +76,8 @@ management:
 
 api-url: dummyjson.com
 
+# Spark 설정
+spark:
+  master: spark://localhost:7077
+  app:
+    name: SpringDeltaApp

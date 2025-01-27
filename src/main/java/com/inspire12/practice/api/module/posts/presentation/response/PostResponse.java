@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.inspire12.practice.api.module.posts.domain.Post;
-import com.inspire12.practice.api.module.posts.domain.vo.PostContentResponse;
+import com.inspire12.practice.api.module.posts.application.vo.PostContentResponse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

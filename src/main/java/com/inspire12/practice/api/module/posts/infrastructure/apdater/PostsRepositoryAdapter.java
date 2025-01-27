@@ -3,7 +3,7 @@ package com.inspire12.practice.api.module.posts.infrastructure.apdater;
 
 import com.inspire12.practice.api.module.posts.domain.Post;
 import com.inspire12.practice.api.module.posts.domain.PostRepository;
-import com.inspire12.practice.api.module.posts.domain.mapper.PostMapper;
+import com.inspire12.practice.api.module.posts.application.mapper.PostMapper;
 import com.inspire12.practice.api.module.posts.presentation.response.PostResponse;
 import com.inspire12.practice.api.module.posts.presentation.response.PostsListResponse;
 import com.inspire12.practice.api.module.posts.presentation.request.PostsSaveRequest;
@@ -12,16 +12,14 @@ import com.inspire12.practice.api.module.posts.infrastructure.entity.PostEntity;
 import com.inspire12.practice.api.module.posts.infrastructure.jparepository.PostJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-//@Transactional(transactionManager = "apiTransactionManager")
-
 @RequiredArgsConstructor
-@Service
+@Repository
 public class PostsRepositoryAdapter implements PostRepository {
     private final PostJpaRepository postsRepository;
 

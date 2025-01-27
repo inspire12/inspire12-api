@@ -8,7 +8,8 @@ import org.springframework.cloud.openfeign.FeignAutoConfiguration;
 
 @ImportAutoConfiguration({FeignAutoConfiguration.class})
 @EnableFeignClients
-@SpringBootApplication(scanBasePackages = "com.inspire12.practice.api")
+@SpringBootApplication(scanBasePackages = {"com.inspire12.practice.api",
+        "com.inspire12.practice.api.module.user.infrastructure.jparepository",})
 public class ApiApplication {
 
 //    @TimeChecker // 부팅
