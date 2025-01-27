@@ -3,9 +3,8 @@ package com.inspire12.practice.api.module.user.infrastructure.adapter;
 import com.inspire12.practice.api.module.user.domain.SessionUser;
 import com.inspire12.practice.api.module.user.infrastructure.OAuthAttributes;
 import com.inspire12.practice.api.module.user.infrastructure.entity.UsersEntity;
-import com.inspire12.practice.api.module.user.infrastructure.repository.UserRepository;
+import com.inspire12.practice.api.module.user.infrastructure.jparepository.UserJpaRepository;
 import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -17,11 +16,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
-@RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
-    private final UserRepository userRepository;
+    private final UserJpaRepository userJpaRepository;
     private final HttpSession httpSession;
+
+    public CustomOAuth2UserService(UserJpaRepository userJpaRepository, HttpSession httpSession) {
+        this.userJpaRepository = userJpaRepository;
+        this.httpSession = httpSession;
+    }
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -43,9 +46,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     }
 
     private UsersEntity saveOrUpdate(OAuthAttributes attributes) {
-        UsersEntity users = userRepository.findByEmail(attributes.getEmail())
+        UsersEntity users = userJpaRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
-        return userRepository.save(users);
+        return userJpaRepository.save(users);
     }
 }

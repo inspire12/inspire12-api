@@ -1,10 +1,10 @@
 package com.inspire12.practice.api.config.web;
 
-import com.inspire12.practice.api.exception.ApiException;
-import com.inspire12.practice.api.exception.BadRequestException;
-import com.inspire12.practice.api.exception.InternalServerErrorException;
-import com.inspire12.practice.api.exception.ResultCode;
-import com.inspire12.practice.api.exception.UrlNotFoundException;
+import com.inspire12.practice.api.support.exception.ApiException;
+import com.inspire12.practice.api.support.exception.BadRequestException;
+import com.inspire12.practice.api.support.exception.InternalServerErrorException;
+import com.inspire12.practice.api.support.exception.ResultCode;
+import com.inspire12.practice.api.support.exception.UrlNotFoundException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;

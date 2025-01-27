@@ -5,14 +5,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.support.TransactionTemplate;
 
 
 @EnableJpaAuditing
 @Configuration
 @RequiredArgsConstructor
+@EnableJpaRepositories(basePackages = {
+        "com.inspire12.practice.api.module"
+})
 public class JpaCommonConfig {
 
     //https://www.marcobehler.com/guides/spring-transaction-management-transactional-in-depth#_how_spring_and_jpa_hibernate_transaction_management_works

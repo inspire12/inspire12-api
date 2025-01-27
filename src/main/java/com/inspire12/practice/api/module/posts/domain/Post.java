@@ -1,6 +1,6 @@
 package com.inspire12.practice.api.module.posts.domain;
 
-import com.inspire12.practice.api.module.posts.domain.mapper.PostContentMapper;
+import com.inspire12.practice.api.module.posts.application.mapper.PostContentMapper;
 import com.inspire12.practice.api.module.posts.infrastructure.entity.PostEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.inspire12.practice.api.module.test.presentation.controller.api;
 
 import com.inspire12.practice.api.config.model.CommonResponse;
-import com.inspire12.practice.api.util.Inspire12MathUtils;
+import com.inspire12.practice.api.support.utils.Inspire12MathUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

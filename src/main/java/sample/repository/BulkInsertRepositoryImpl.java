@@ -1,7 +1,7 @@
 package sample.repository;
 
 
-import com.inspire12.practice.api.utils.TimeCheck;
+import com.inspire12.practice.api.support.utils.TimeCheck;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
