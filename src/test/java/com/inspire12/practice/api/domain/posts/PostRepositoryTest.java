@@ -60,10 +60,10 @@ class PostRepositoryTest {
         // then
         PostEntity postEntity = postEntityList.get(0);
 
-        System.out.println(">>>>>>>> createDate=" + postEntity.getCreatedDate() +
-                ", modifiedDate=" + postEntity.getModifiedDate());
-        assertThat(postEntity.getCreatedDate()).isAfter(now);
-        assertThat(postEntity.getModifiedDate()).isAfter(now);
+        System.out.println(">>>>>>>> createDate=" + postEntity.getCreatedAt() +
+                ", modifiedDate=" + postEntity.getUpdatedAt());
+        assertThat(postEntity.getCreatedAt()).isAfter(now);
+        assertThat(postEntity.getUpdatedAt()).isAfter(now);
     }
 
 }

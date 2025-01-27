@@ -32,23 +32,9 @@ public class SecurityConfig {
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
     private final CustomOAuth2UserService customOAuth2UserService;
 
-//    @Bean
-//    public MapReactiveUserDetailsService userDetailsService() {
-//        UserDetails user = User.withUsername("user")
-//            .password("user")
-//            .roles("USER")
-//            .build();
-//        return new MapReactiveUserDetailsService(user);
-//    }
-
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return web -> web.ignoring()
-//            .requestMatchers("/", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**"); // 정적 리소스 제외
-//    }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain createSecurityfilterChain(HttpSecurity http) throws Exception {
         http
             .cors(cors -> cors.configurationSource(request -> {
                 CorsConfiguration config = new CorsConfiguration();

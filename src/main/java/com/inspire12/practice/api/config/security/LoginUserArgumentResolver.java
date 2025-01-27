@@ -1,4 +1,4 @@
-package com.inspire12.practice.api.config.web;
+package com.inspire12.practice.api.config.security;
 
 import com.inspire12.practice.api.config.security.aop.LoginUser;
 import com.inspire12.practice.api.module.user.domain.SessionUser;
