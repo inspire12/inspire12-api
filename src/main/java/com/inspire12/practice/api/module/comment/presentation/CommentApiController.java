@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/comments")
 @RestController
 public class CommentApiController {
-    private final CommentUsecase commentService;
+//    private final CommentUsecase commentService;
 
 }

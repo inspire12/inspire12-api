@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+
 import static org.springframework.security.config.Customizer.withDefaults;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -16,6 +18,7 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
@@ -50,17 +53,38 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> cors.configurationSource(request -> {
-                CorsConfiguration config = new CorsConfiguration();
-                config.setAllowedOrigins(List.of("*")); // 모든 오리진 허용
-                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-                return config;
-            }))
-            .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/api/v1/**", "/h2-console/**", "/favicon.ico").permitAll()
-                .anyRequest().authenticated()
-        );
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowedOrigins(List.of("*")); // 모든 오리진 허용
+                    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+                    return config;
+                }))
+
+                .csrf(AbstractHttpConfigurer::disable)
+                .oauth2Login(oauth2 -> oauth2
+                        .defaultSuccessUrl("/success")
+                        .userInfoEndpoint(userInfo -> userInfo
+                                .oidcUserService(new OidcUserService())
+                        )
+                )
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/api/v1/**", "/h2-console/**", "/favicon.ico").permitAll()
+                        .anyRequest().authenticated()
+                );
+                // Form Login 설정
+//                .formLogin(form -> form
+//                        .loginPage("/login") // 커스텀 로그인 페이지 URL
+//                        .defaultSuccessUrl("/") // 로그인 성공 시 리다이렉트할 URL
+//                        .permitAll()
+//                )
+//
+//                // OAuth 설정
+//                .oauth2Login(oauth2Login -> oauth2Login
+//                    .loginPage("/login") // OAuth 로그인도 동일한 로그인 페이지 사용
+//                    .defaultSuccessUrl("/") // OAuth 로그인 성공 시 리다이렉트할 URL
+//                    .permitAll()
+//                );
+
         return http.build();
 //        return
 //            http

@@ -13,9 +13,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableJpaAuditing
 @Configuration
 @RequiredArgsConstructor
-@EnableJpaRepositories(basePackages = {
-        "com.inspire12.practice.api.module"
-})
+
 public class JpaCommonConfig {
 
     //https://www.marcobehler.com/guides/spring-transaction-management-transactional-in-depth#_how_spring_and_jpa_hibernate_transaction_management_works
